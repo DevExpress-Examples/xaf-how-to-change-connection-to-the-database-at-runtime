@@ -12,7 +12,7 @@ Partial Public Class ErrorPage
             WebApplication.Instance.InitializeCulture()
         End If
     End Sub
-    Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim testScriptsManager As New TestScriptsManager(Page)
         testScriptsManager.RegisterControl(JSLabelTestControl.ClassName, "FormCaption", TestControlType.Field, "FormCaption")
         testScriptsManager.RegisterControl(JSLabelTestControl.ClassName, "DescriptionTextBox", TestControlType.Field, "Description")
@@ -47,7 +47,7 @@ Partial Public Class ErrorPage
     Private Sub InitializeComponent()
     End Sub
 
-    Private Sub ErrorPage_PreRender(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.PreRender
+    Private Sub ErrorPage_PreRender(ByVal sender As Object, ByVal e As EventArgs) Handles Me.PreRender
         RegisterThemeAssemblyController.RegisterThemeResources(DirectCast(sender, Page))
     End Sub
 

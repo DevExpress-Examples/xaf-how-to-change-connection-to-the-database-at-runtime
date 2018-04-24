@@ -44,7 +44,7 @@ Namespace RuntimeDbChooser.Module.Win
                 DirectCast(SecuritySystem.LogonParameters, IDatabaseNameParameter).DatabaseName = WinChangeDatabaseHelper.DatabaseName
             End If
             Dim authenticationStandardLogonParameters As AuthenticationStandardLogonParameters = TryCast(SecuritySystem.LogonParameters, AuthenticationStandardLogonParameters)
-            If authenticationStandardLogonParameters IsNot Nothing AndAlso (Not String.IsNullOrEmpty(WinChangeDatabaseStandardAuthentication.AuthenticatedUserName)) Then
+            If authenticationStandardLogonParameters IsNot Nothing AndAlso Not String.IsNullOrEmpty(WinChangeDatabaseStandardAuthentication.AuthenticatedUserName) Then
                 authenticationStandardLogonParameters.UserName = WinChangeDatabaseStandardAuthentication.AuthenticatedUserName
             End If
         End Sub

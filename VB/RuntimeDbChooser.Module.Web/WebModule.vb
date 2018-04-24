@@ -15,10 +15,11 @@ Imports DevExpress.ExpressApp.Model.NodeGenerators
 Imports DevExpress.Persistent.BaseImpl
 
 Namespace RuntimeDbChooser.Module.Web
+    ' For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppModuleBasetopic.aspx.
     <ToolboxItemFilter("Xaf.Platform.Web")> _
     Public NotInheritable Partial Class RuntimeDbChooserAspNetModule
         Inherits ModuleBase
-    ' For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppModuleBasetopic.aspx.
+
         Private Sub Application_CreateCustomModelDifferenceStore(ByVal sender As Object, ByVal e As CreateCustomModelDifferenceStoreEventArgs)
         #If Not DEBUG Then
             e.Store = New ModelDifferenceDbStore(DirectCast(sender, XafApplication), GetType(ModelDifference), True, "Web")

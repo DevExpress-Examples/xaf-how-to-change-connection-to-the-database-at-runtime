@@ -48,7 +48,7 @@ Namespace RuntimeDbChooser.Web
             '    e.ObjectSpaceProvider = new XPObjectSpaceProvider(dataStoreProvider, true);
             '}
         End Sub
-        Private Sub RuntimeDbChooserAspNetApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles MyBase.DatabaseVersionMismatch
+        Private Sub RuntimeDbChooserAspNetApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles Me.DatabaseVersionMismatch
 #If EASYTEST Then
             e.Updater.Update()
             e.Handled = True
