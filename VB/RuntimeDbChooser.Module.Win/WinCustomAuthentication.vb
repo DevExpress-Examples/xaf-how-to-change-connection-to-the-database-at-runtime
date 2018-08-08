@@ -39,7 +39,7 @@ Namespace RuntimeDbChooser.Module.Win
             If String.IsNullOrEmpty(AuthenticatedUserName) Then
                 Return MyBase.Authenticate(objectSpace)
             Else
-                    Dim logonParameters As CustomLogonParametersForStandardAuthentication = CType(me.LogonParameters, CustomLogonParametersForStandardAuthentication)
+                Dim logonParameters As CustomLogonParametersForStandardAuthentication = CType(LogonParameters, CustomLogonParametersForStandardAuthentication)
                 Dim result As Object = objectSpace.FindObject(UserType, New BinaryOperator("UserName", logonParameters.UserName))
                 If result Is Nothing Then
                     WinChangeDatabaseHelper.AuthenticatedUserLogonFailed = True
