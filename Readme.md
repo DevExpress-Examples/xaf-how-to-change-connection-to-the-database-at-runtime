@@ -1,3 +1,17 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [WebChangeDatabaseController.cs](./CS/RuntimeDbChooser.Module.Web/WebChangeDatabaseController.cs) (VB: [WebChangeDatabaseController.vb](./VB/RuntimeDbChooser.Module.Web/WebChangeDatabaseController.vb))
+* [WebCustomAuthentication.cs](./CS/RuntimeDbChooser.Module.Web/WebCustomAuthentication.cs) (VB: [WebCustomAuthentication.vb](./VB/RuntimeDbChooser.Module.Web/WebCustomAuthentication.vb))
+* [WinChangeDatabaseController.cs](./CS/RuntimeDbChooser.Module.Win/WinChangeDatabaseController.cs) (VB: [WinChangeDatabaseController.vb](./VB/RuntimeDbChooser.Module.Win/WinChangeDatabaseController.vb))
+* [WinCustomAuthentication.cs](./CS/RuntimeDbChooser.Module.Win/WinCustomAuthentication.cs) (VB: [WinCustomAuthentication.vb](./VB/RuntimeDbChooser.Module.Win/WinCustomAuthentication.vb))
+* [CustomLogonParameters.cs](./CS/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (VB: [CustomLogonParameters.vb](./VB/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.vb))
+* [Updater.cs](./CS/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (VB: [Updater.vb](./VB/RuntimeDbChooser.Module/DatabaseUpdate/Updater.vb))
+* [WebApplication.cs](./CS/RuntimeDbChooser.Web/WebApplication.cs) (VB: [WebApplicationEx.vb](./VB/RuntimeDbChooser.Web/WebApplicationEx.vb))
+* [WebApplicationEx.cs](./CS/RuntimeDbChooser.Web/WebApplicationEx.cs) (VB: [WebApplicationEx.vb](./VB/RuntimeDbChooser.Web/WebApplicationEx.vb))
+* [Program.cs](./CS/RuntimeDbChooser.Win/Program.cs) (VB: [Program.vb](./VB/RuntimeDbChooser.Win/Program.vb))
+* [WinApplicationEx.cs](./CS/RuntimeDbChooser.Win/WinApplicationEx.cs) (VB: [WinApplicationEx.vb](./VB/RuntimeDbChooser.Win/WinApplicationEx.vb))
+<!-- default file list end -->
 # How to change connection to the database at runtime
 
 
