@@ -5,6 +5,8 @@ using DevExpress.ExpressApp.Win;
 using System.Collections.Generic;
 using DevExpress.ExpressApp.Updating;
 using DevExpress.ExpressApp.Xpo;
+using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Security;
 
 namespace RuntimeDbChooser.Win {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWinWinApplicationMembersTopicAll.aspx
@@ -13,7 +15,7 @@ namespace RuntimeDbChooser.Win {
             InitializeComponent();
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
-            args.ObjectSpaceProvider = new XPObjectSpaceProvider(args.ConnectionString, args.Connection, false);
+            args.ObjectSpaceProvider = new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, args.ConnectionString, args.Connection);
             args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
         }
         private void RuntimeDbChooserWindowsFormsApplication_CustomizeLanguagesList(object sender, CustomizeLanguagesListEventArgs e) {

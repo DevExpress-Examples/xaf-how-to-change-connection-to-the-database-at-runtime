@@ -4,6 +4,8 @@ using System.ComponentModel;
 using DevExpress.ExpressApp.Web;
 using System.Collections.Generic;
 using DevExpress.ExpressApp.Xpo;
+using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Security;
 
 namespace RuntimeDbChooser.Web {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWebWebApplicationMembersTopicAll.aspx
@@ -22,7 +24,7 @@ namespace RuntimeDbChooser.Web {
             InitializeComponent();
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
-            args.ObjectSpaceProviders.Add(new XPObjectSpaceProvider(args.ConnectionString, null, true));
+            args.ObjectSpaceProviders.Add(new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, args.ConnectionString, args.Connection));
             args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
         }
         private void CreateXPObjectSpaceProvider(string connectionString, CreateCustomObjectSpaceProviderEventArgs e) {

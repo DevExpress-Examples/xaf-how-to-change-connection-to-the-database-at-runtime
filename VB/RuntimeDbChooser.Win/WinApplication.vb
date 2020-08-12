@@ -5,6 +5,8 @@ Imports DevExpress.ExpressApp.Win
 Imports System.Collections.Generic
 Imports DevExpress.ExpressApp.Updating
 Imports DevExpress.ExpressApp.Xpo
+Imports DevExpress.ExpressApp.Security.ClientServer
+Imports DevExpress.ExpressApp.Security
 
 Namespace RuntimeDbChooser.Win
     ' For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWinWinApplicationMembersTopicAll.aspx
@@ -15,7 +17,7 @@ Namespace RuntimeDbChooser.Win
             InitializeComponent()
         End Sub
         Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
-            args.ObjectSpaceProvider = New XPObjectSpaceProvider(args.ConnectionString, args.Connection, False)
+            args.ObjectSpaceProvider = New SecuredObjectSpaceProvider(CType(Security, SecurityStrategyComplex), args.ConnectionString, args.Connection)
             args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
         End Sub
         Private Sub RuntimeDbChooserWindowsFormsApplication_CustomizeLanguagesList(ByVal sender As Object, ByVal e As CustomizeLanguagesListEventArgs) Handles Me.CustomizeLanguagesList
