@@ -11,8 +11,19 @@ using DevExpress.ExpressApp.Security;
 namespace RuntimeDbChooser.Win {
     // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWinWinApplicationMembersTopicAll.aspx
     public partial class RuntimeDbChooserWindowsFormsApplication : WinApplication {
+        static RuntimeDbChooserWindowsFormsApplication() {
+            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = true;
+            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = false;
+            DevExpress.ExpressApp.Utils.ImageLoader.Instance.UseSvgImages = true;
+        }
+        private void InitializeDefaults() {
+            LinkNewObjectToParentImmediately = false;
+            OptimizedControllersCreation = true;
+            UseLightStyle = true;
+        }
         public RuntimeDbChooserWindowsFormsApplication() {
             InitializeComponent();
+            InitializeDefaults();
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
             args.ObjectSpaceProvider = new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, args.ConnectionString, args.Connection);
@@ -32,8 +43,7 @@ namespace RuntimeDbChooser.Win {
             if(System.Diagnostics.Debugger.IsAttached) {
                 e.Updater.Update();
                 e.Handled = true;
-            }
-            else {
+            } else {
                 throw new InvalidOperationException(
                     "The application cannot connect to the specified database, because the latter doesn't exist or its version is older than that of the application.\r\n" +
                     "This error occurred  because the automatic database update was disabled when the application was started without debugging.\r\n" +

@@ -27,7 +27,7 @@ namespace RuntimeDbChooser.Win {
 			RuntimeDbChooserWindowsFormsApplication winApplication = RuntimeDbChooserWindowsFormsApplication.CreateApplication();
             // Refer to the https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112680.aspx help article for more details on how to provide a custom splash form.
             //winApplication.SplashScreen = new DevExpress.ExpressApp.Win.Utils.DXSplashScreen("YourSplashImage.png");
-            IsGrantedAdapter.Enable(XPOSecurityAdapterHelper.GetXpoCachedRequestSecurityAdapters());
+            winApplication.GetSecurityStrategy().RegisterXPOAdapterProviders();
             if(ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
                 winApplication.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             }
