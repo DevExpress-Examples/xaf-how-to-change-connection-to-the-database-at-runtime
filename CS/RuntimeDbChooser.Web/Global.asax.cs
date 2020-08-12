@@ -11,6 +11,7 @@ using DevExpress.ExpressApp.Security.Adapters;
 using DevExpress.ExpressApp.Security.Xpo.Adapters;
 using DevExpress.ExpressApp.Web;
 using DevExpress.Web;
+using System.Web.Routing;
 
 namespace RuntimeDbChooser.Web {
     public class Global : System.Web.HttpApplication {
@@ -18,7 +19,7 @@ namespace RuntimeDbChooser.Web {
             InitializeComponent();
         }
         protected void Application_Start(Object sender, EventArgs e) {
-            IsGrantedAdapter.Enable(XPOSecurityAdapterHelper.GetXpoCachedRequestSecurityAdapters());
+            RouteTable.Routes.RegisterXafRoutes();
             ASPxWebControl.CallbackError += new EventHandler(Application_Error);
 #if EASYTEST
             DevExpress.ExpressApp.Web.TestScripts.TestScriptsManager.EasyTestEnabled = true;
@@ -26,6 +27,8 @@ namespace RuntimeDbChooser.Web {
         }
         protected void Session_Start(Object sender, EventArgs e) {
             WebApplication.SetInstance(Session, new RuntimeDbChooserAspNetApplication());
+            SecurityStrategy security = WebApplication.Instance.GetSecurityStrategy();
+            security.RegisterXPOAdapterProviders();
             WebApplication.Instance.SwitchToNewStyle();
             if(ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
                 WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;

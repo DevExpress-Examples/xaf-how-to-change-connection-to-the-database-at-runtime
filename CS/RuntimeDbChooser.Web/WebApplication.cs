@@ -20,12 +20,30 @@ namespace RuntimeDbChooser.Web {
         private DevExpress.ExpressApp.Validation.ValidationModule validationModule;
         private DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule validationAspNetModule;
 
+        static RuntimeDbChooserAspNetApplication() {
+            EnableMultipleBrowserTabsSupport = true;
+            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.AllowFilterControlHierarchy = true;
+            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.MaxFilterControlHierarchyDepth = 3;
+            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.AllowFilterControlHierarchyDefault = true;
+            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.MaxHierarchyDepthDefault = 3;
+            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = true;
+            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = false;
+            DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = true;
+        }
+        private void InitializeDefaults() {
+            LinkNewObjectToParentImmediately = false;
+            OptimizedControllersCreation = true;
+        }
         public RuntimeDbChooserAspNetApplication() {
             InitializeComponent();
+            InitializeDefaults();
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
             args.ObjectSpaceProviders.Add(new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, args.ConnectionString, args.Connection));
             args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
+        }
+        protected override IViewUrlManager CreateViewUrlManager() {
+            return new ViewUrlManager();
         }
         private void CreateXPObjectSpaceProvider(string connectionString, CreateCustomObjectSpaceProviderEventArgs e) {
             //System.Web.HttpApplicationState application = (System.Web.HttpContext.Current != null) ? System.Web.HttpContext.Current.Application : null;
