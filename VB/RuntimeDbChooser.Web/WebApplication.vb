@@ -67,47 +67,49 @@ Namespace RuntimeDbChooser.Web
 #End If
         End Sub
         Private Sub InitializeComponent()
-            Me.module1 = New DevExpress.ExpressApp.SystemModule.SystemModule()
-            Me.module2 = New DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule()
-            Me.module3 = New RuntimeDbChooser.Module.RuntimeDbChooserModule()
-            Me.module4 = New RuntimeDbChooser.Module.Web.RuntimeDbChooserAspNetModule()
-            Me.securityModule1 = New DevExpress.ExpressApp.Security.SecurityModule()
-            Me.securityStrategyComplex1 = New DevExpress.ExpressApp.Security.SecurityStrategyComplex()
-            Me.authenticationStandard1 = New DevExpress.ExpressApp.Security.AuthenticationStandard()
-            Me.validationModule = New DevExpress.ExpressApp.Validation.ValidationModule()
-            Me.validationAspNetModule = New DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule()
-            DirectCast(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-            ' 
-            ' securityStrategyComplex1
-            ' 
-            Me.securityStrategyComplex1.Authentication = Me.authenticationStandard1
-            Me.securityStrategyComplex1.RoleType = GetType(DevExpress.ExpressApp.Security.Strategy.SecuritySystemRole)
-            Me.securityStrategyComplex1.UserType = GetType(DevExpress.ExpressApp.Security.Strategy.SecuritySystemUser)
-            ' 
-            ' authenticationStandard1
-            ' 
-            Me.authenticationStandard1.LogonParametersType = GetType(RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication)
-            ' 
-            ' validationModule
-            ' 
-            Me.validationModule.AllowValidationDetailsAccess = True
-            Me.validationModule.IgnoreWarningAndInformationRules = False
-            ' 
-            ' RuntimeDbChooserAspNetApplication
-            ' 
-            Me.ApplicationName = "RuntimeDbChooser"
-            Me.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema
-            Me.LinkNewObjectToParentImmediately = False
-            Me.Modules.Add(Me.module1)
-            Me.Modules.Add(Me.module2)
-            Me.Modules.Add(Me.validationModule)
-            Me.Modules.Add(Me.securityModule1)
-            Me.Modules.Add(Me.module3)
-            Me.Modules.Add(Me.validationAspNetModule)
-            Me.Modules.Add(Me.module4)
-            Me.Security = Me.securityStrategyComplex1
-            DirectCast(Me, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.module1 = New DevExpress.ExpressApp.SystemModule.SystemModule()
+        Me.module2 = New DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule()
+        Me.module3 = New RuntimeDbChooser.[Module].RuntimeDbChooserModule()
+        Me.module4 = New RuntimeDbChooser.[Module].Web.RuntimeDbChooserAspNetModule()
+        Me.securityModule1 = New DevExpress.ExpressApp.Security.SecurityModule()
+        Me.securityStrategyComplex1 = New DevExpress.ExpressApp.Security.SecurityStrategyComplex()
+        Me.authenticationStandard1 = New DevExpress.ExpressApp.Security.AuthenticationStandard()
+        Me.validationModule = New DevExpress.ExpressApp.Validation.ValidationModule()
+        Me.validationAspNetModule = New DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule()
+        CType(Me,System.ComponentModel.ISupportInitialize).BeginInit
+        '
+        'securityStrategyComplex1
+        '
+        Me.securityStrategyComplex1.AllowAnonymousAccess = false
+        Me.securityStrategyComplex1.Authentication = Me.authenticationStandard1
+        Me.securityStrategyComplex1.PermissionsReloadMode = DevExpress.ExpressApp.Security.PermissionsReloadMode.NoCache
+        Me.securityStrategyComplex1.RoleType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole)
+        Me.securityStrategyComplex1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
+        '
+        'authenticationStandard1
+        '
+        Me.authenticationStandard1.LogonParametersType = GetType(RuntimeDbChooser.[Module].BusinessObjects.CustomLogonParametersForStandardAuthentication)
+        '
+        'validationModule
+        '
+        Me.validationModule.AllowValidationDetailsAccess = true
+        Me.validationModule.IgnoreWarningAndInformationRules = false
+        '
+        'RuntimeDbChooserAspNetApplication
+        '
+        Me.ApplicationName = "RuntimeDbChooser"
+        Me.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema
+        Me.LinkNewObjectToParentImmediately = false
+        Me.Modules.Add(Me.module1)
+        Me.Modules.Add(Me.module2)
+        Me.Modules.Add(Me.validationModule)
+        Me.Modules.Add(Me.securityModule1)
+        Me.Modules.Add(Me.module3)
+        Me.Modules.Add(Me.validationAspNetModule)
+        Me.Modules.Add(Me.module4)
+        Me.Security = Me.securityStrategyComplex1
+        CType(Me,System.ComponentModel.ISupportInitialize).EndInit
 
-        End Sub
+End Sub
     End Class
 End Namespace
