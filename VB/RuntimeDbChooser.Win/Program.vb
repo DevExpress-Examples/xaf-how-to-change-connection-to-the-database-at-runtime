@@ -29,6 +29,7 @@ Namespace RuntimeDbChooser.Win
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached
             'RuntimeDbChooserWindowsFormsApplication winApplication = new RuntimeDbChooserWindowsFormsApplication();
             Dim winApplication As RuntimeDbChooserWindowsFormsApplication = RuntimeDbChooserWindowsFormsApplication.CreateApplication()
+            winApplication.GetSecurityStrategy().RegisterXPOAdapterProviders()
             ' Refer to the https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112680.aspx help article for more details on how to provide a custom splash form.
             'winApplication.SplashScreen = new DevExpress.ExpressApp.Win.Utils.DXSplashScreen("YourSplashImage.png");
             IsGrantedAdapter.Enable(XPOSecurityAdapterHelper.GetXpoCachedRequestSecurityAdapters())

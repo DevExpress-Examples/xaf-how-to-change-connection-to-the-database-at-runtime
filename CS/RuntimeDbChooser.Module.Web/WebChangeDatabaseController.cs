@@ -5,6 +5,7 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Web;
 using DevExpress.ExpressApp.Actions;
 using RuntimeDbChooser.Module.BusinessObjects;
+using DevExpress.Persistent.Base;
 
 namespace RuntimeDbChooser.Module.Web {
 	public class WebChangeDatabaseController : WindowController {
@@ -13,7 +14,7 @@ namespace RuntimeDbChooser.Module.Web {
 		public WebChangeDatabaseController() {
 			TargetWindowType = WindowType.Main;
 
-			changeDatabaseAction = new SingleChoiceAction(this, "ChangeDatabase", "Security");
+			changeDatabaseAction = new SingleChoiceAction(this, "ChangeDatabase", PredefinedCategory.View);
 			foreach(string databaseName in MSSqlServerChangeDatabaseHelper.Databases.Split(';')) {
 				changeDatabaseAction.Items.Add(new ChoiceActionItem(databaseName, databaseName));
 			}

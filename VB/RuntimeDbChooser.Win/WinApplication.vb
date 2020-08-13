@@ -5,17 +5,34 @@ Imports DevExpress.ExpressApp.Win
 Imports System.Collections.Generic
 Imports DevExpress.ExpressApp.Updating
 Imports DevExpress.ExpressApp.Xpo
+Imports DevExpress.ExpressApp.Security.ClientServer
+Imports DevExpress.ExpressApp.Security
+Imports DevExpress.ExpressApp.Win.Utils
 
 Namespace RuntimeDbChooser.Win
     ' For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWinWinApplicationMembersTopicAll.aspx
     Partial Public Class RuntimeDbChooserWindowsFormsApplication
         Inherits WinApplication
-
+        Shared Sub New()
+            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = True
+            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = False
+            DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = True
+            DevExpress.ExpressApp.Utils.ImageLoader.Instance.UseSvgImages = True
+            DetailView.UseAsyncLoading = True
+        End Sub
+        Private Sub InitializeDefaults()
+            LinkNewObjectToParentImmediately = False
+            OptimizedControllersCreation = True
+            UseLightStyle = True
+            
+            ExecuteStartupLogicBeforeClosingLogonWindow = True
+        End Sub
         Public Sub New()
             InitializeComponent()
+            InitializeDefaults()
         End Sub
         Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
-            args.ObjectSpaceProvider = New XPObjectSpaceProvider(args.ConnectionString, args.Connection, False)
+            args.ObjectSpaceProvider = New SecuredObjectSpaceProvider(CType(Security, SecurityStrategyComplex), args.ConnectionString, args.Connection)
             args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
         End Sub
         Private Sub RuntimeDbChooserWindowsFormsApplication_CustomizeLanguagesList(ByVal sender As Object, ByVal e As CustomizeLanguagesListEventArgs) Handles Me.CustomizeLanguagesList

@@ -2,6 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeDbChooser.Win", "RuntimeDbChooser.Win\RuntimeDbChooser.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeDbChooser.Module", "RuntimeDbChooser.Module\RuntimeDbChooser.Module.csproj", "{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeDbChooser.Module.Web", "RuntimeDbChooser.Module.Web\RuntimeDbChooser.Module.Web.csproj", "{0C729AAD-7626-4668-A7F1-35F7D240489D}"
@@ -9,8 +11,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeDbChooser.Web", "RuntimeDbChooser.Web\RuntimeDbChooser.Web.csproj", "{82A6DBC9-B1B4-44E4-9718-55DF930CD349}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeDbChooser.Module.Win", "RuntimeDbChooser.Module.Win\RuntimeDbChooser.Module.Win.csproj", "{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuntimeDbChooser.Win", "RuntimeDbChooser.Win\RuntimeDbChooser.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

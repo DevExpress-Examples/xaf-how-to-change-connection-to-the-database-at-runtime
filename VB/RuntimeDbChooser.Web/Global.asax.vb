@@ -11,6 +11,7 @@ Imports DevExpress.ExpressApp.Security.Adapters
 Imports DevExpress.ExpressApp.Security.Xpo.Adapters
 Imports DevExpress.ExpressApp.Web
 Imports DevExpress.Web
+Imports System.Web.Routing
 
 Namespace RuntimeDbChooser.Web
     Public Class [Global]
@@ -20,7 +21,7 @@ Namespace RuntimeDbChooser.Web
             InitializeComponent()
         End Sub
         Protected Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
-            IsGrantedAdapter.Enable(XPOSecurityAdapterHelper.GetXpoCachedRequestSecurityAdapters())
+            RouteTable.Routes.RegisterXafRoutes()
             AddHandler ASPxWebControl.CallbackError, AddressOf Application_Error
 #If EASYTEST Then
             DevExpress.ExpressApp.Web.TestScripts.TestScriptsManager.EasyTestEnabled = True
@@ -28,6 +29,9 @@ Namespace RuntimeDbChooser.Web
         End Sub
         Protected Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)
             WebApplication.SetInstance(Session, New RuntimeDbChooserAspNetApplication())
+            Dim security As SecurityStrategy = WebApplication.Instance.GetSecurityStrategy()
+            security.RegisterXPOAdapterProviders()
+            DevExpress.ExpressApp.Web.Templates.DefaultVerticalTemplateContentNew.ClearSizeLimit()
             WebApplication.Instance.SwitchToNewStyle()
             If ConfigurationManager.ConnectionStrings("ConnectionString") IsNot Nothing Then
                 WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings("ConnectionString").ConnectionString
@@ -58,13 +62,13 @@ Namespace RuntimeDbChooser.Web
         End Sub
         Protected Sub Application_End(ByVal sender As Object, ByVal e As EventArgs)
         End Sub
-        #Region "Web Form Designer generated code"
+#Region "Web Form Designer generated code"
         ''' <summary>
         ''' Required method for Designer support - do not modify
         ''' the contents of this method with the code editor.
         ''' </summary>
         Private Sub InitializeComponent()
         End Sub
-        #End Region
+#End Region
     End Class
 End Namespace
