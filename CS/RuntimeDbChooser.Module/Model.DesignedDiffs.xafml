@@ -6,7 +6,7 @@
   <Views>
     <DetailView Id="CustomLogonParametersForStandardAuthentication_DetailView">
       <Items>
-        <StaticText Id="LogonText" Text="Welcome! Please enter your user name and password below. Consider the following test logins:&#xD;&#xA;- User1 or User2 for the DB1 and DB2 databases respectively; &#xD;&#xA;- Admin for all databases (this user can also switch the database via SingleChoiceAction).&#xD;&#xA;All test users have empty passwords by default." IsNewNode="True" />
+        <StaticText Id="LogonText" Text="Welcome! Please enter your user name and password below. Consider the following test logins:&#xD;&#xA;- User1 or User2 for the DB1 and DB2 databases respectively; &#xD;&#xA;- Admin for all databases.&#xD;&#xA;All test users have empty passwords by default." IsNewNode="True" />
       </Items>
       <Layout>
         <LayoutGroup Id="Main">
