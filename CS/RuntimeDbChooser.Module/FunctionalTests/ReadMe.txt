@@ -7,4 +7,4 @@ configuration file and scripts.
 Relevant Documentation
 
 Functional Testing
-https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113206.aspx
+https://docs.devexpress.com/eXpressAppFramework/113206

@@ -1,202 +1,189 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D05D93DF-312D-4D4E-B980-726871EC7833}</ProjectGuid>
+    <ProjectGuid>{E6A2B307-7089-4251-AC7B-CCA4181F8EDC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>
-    </RootNamespace>
+    <StartupObject>Sub Main</StartupObject>
+    <RootNamespace>RuntimeDbChooser.Win</RootNamespace>
     <AssemblyName>RuntimeDbChooser.Win</AssemblyName>
-    <ApplicationIcon>ExpressApp.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <OptionExplicit>On</OptionExplicit>
-    <OptionCompare>Binary</OptionCompare>
-    <OptionStrict>Off</OptionStrict>
-    <OptionInfer>On</OptionInfer>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <ApplicationIcon>ExpressApp.ico</ApplicationIcon>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <ErrorReport>prompt</ErrorReport>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>$solutionname$.Win.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <ErrorReport>prompt</ErrorReport>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>$solutionname$.Win.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\EasyTest\</OutputPath>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <DefineConstants>EASYTEST=True</DefineConstants>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DocumentationFile>$solutionname$.Win.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>EASYTEST</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Import Include="Microsoft.VisualBasic" />
-    <Import Include="System.Collections.Generic" />
-    <Import Include="System.Collections" />
-    <Import Include="System.Diagnostics" />
-    <Import Include="System.Linq" />
-    <Import Include="System.Data" />
-    <Import Include="System.Drawing" />
-    <Import Include="System.Windows.Forms" />
-    <Import Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.Security.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Images.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Security.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.Win.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Validation.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Office.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+    <Reference Include="DevExpress.Pdf.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Office.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.Utils.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.RichEdit.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.BonusSkins.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.RichEdit.v20.2.Export">
+      
     </Reference>
-    <Reference Include="DevExpress.Pdf.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Printing.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v20.1.Export">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Data.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Printing.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Data.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Win.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Persistent.Base.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Images.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Win.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Xpo.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Data.Desktop.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Utils.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Xpo.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraGrid.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraEditors.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraLayout.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraNavBar.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraBars.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraPrinting.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v20.1">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.Images.v20.1">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v20.1">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v20.1">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v20.1">
+    <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
-      <Name>System</Name>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.configuration">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Data">
-      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Drawing">
-      <Name>System.Drawing</Name>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <Name>System.Windows.Forms</Name>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml">
-      <Name>System.XML</Name>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Logo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExpressApp.ico" />
+    <EmbeddedResource Include="XafSplashScreen.resx">
+      <DependentUpon>XafSplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ReadMe.txt" />
+    <None Include="Images\ReadMe.txt" />
+    <None Include="App.config" />
+    <Content Include="Model.xafml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.vb" />
@@ -207,72 +194,25 @@
     <Compile Include="WinApplication.Designer.vb">
       <DependentUpon>WinApplication.vb</DependentUpon>
     </Compile>
-    <Compile Include="WinApplicationEx.vb">
-      <SubType>Component</SubType>
+    <Compile Include="XafSplashScreen.Designer.vb">
+      <DependentUpon>XafSplashScreen.vb</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
+    <Compile Include="XafSplashScreen.vb">
+      <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="WinApplication.resx">
-      <DependentUpon>WinApplication.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="App.config" />
-    <None Include="Model.xafml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="My Project\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
-    <Compile Include="My Project\Settings.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ExpressApp.ico" />
-    <None Include="Images\ReadMe.txt" />
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RuntimeDbChooser.Module.Win\RuntimeDbChooser.Module.Win.vbproj">
-      <Project>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</Project>
+      <Project>{8eff6c61-263a-4b46-8a58-fc9968f2c995}</Project>
       <Name>RuntimeDbChooser.Module.Win</Name>
     </ProjectReference>
     <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.vbproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
+      <Project>{2778636d-909a-41da-9ad7-1d22ea25f0be}</Project>
       <Name>RuntimeDbChooser.Module</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

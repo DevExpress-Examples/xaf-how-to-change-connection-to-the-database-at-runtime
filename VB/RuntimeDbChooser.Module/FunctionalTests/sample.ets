@@ -1,20 +1,20 @@
 ﻿;#DropDB RuntimeDbChooserEasyTest
 
-#Application RuntimeDbChooser.Win
-#Application RuntimeDbChooser.Web
+#Application RuntimeDbChooserWin
+#Application RuntimeDbChooserWeb
 
 *FillForm
  User Name = Admin
-*Action Log On
+*Action Log In
 
-#IfDef RuntimeDbChooser.Win
+#IfDef RuntimeDbChooserWin
 
-
+*Action About...
  
 *Action OK
 
 #EndIf
 
-#IfDef RuntimeDbChooser.Web
+#IfDef RuntimeDbChooserWeb
 *Action Navigation(My Details)
 #EndIf

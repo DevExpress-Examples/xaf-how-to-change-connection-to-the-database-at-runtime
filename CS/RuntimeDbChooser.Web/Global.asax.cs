@@ -2,16 +2,14 @@
 using System.Configuration;
 using System.Web.Configuration;
 using System.Web;
+using System.Web.Routing;
 
 using DevExpress.ExpressApp;
 using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.ExpressApp.Security;
-using DevExpress.ExpressApp.Security.Adapters;
-using DevExpress.ExpressApp.Security.Xpo.Adapters;
 using DevExpress.ExpressApp.Web;
 using DevExpress.Web;
-using System.Web.Routing;
 
 namespace RuntimeDbChooser.Web {
     public class Global : System.Web.HttpApplication {
@@ -19,6 +17,7 @@ namespace RuntimeDbChooser.Web {
             InitializeComponent();
         }
         protected void Application_Start(Object sender, EventArgs e) {
+            DevExpress.ExpressApp.FrameworkSettings.DefaultSettingsCompatibilityMode = DevExpress.ExpressApp.FrameworkSettingsCompatibilityMode.Latest;
             RouteTable.Routes.RegisterXafRoutes();
             ASPxWebControl.CallbackError += new EventHandler(Application_Error);
 #if EASYTEST
@@ -26,9 +25,11 @@ namespace RuntimeDbChooser.Web {
 #endif
         }
         protected void Session_Start(Object sender, EventArgs e) {
+            Tracing.Initialize();
             WebApplication.SetInstance(Session, new RuntimeDbChooserAspNetApplication());
             SecurityStrategy security = WebApplication.Instance.GetSecurityStrategy();
             security.RegisterXPOAdapterProviders();
+            DevExpress.ExpressApp.Web.Templates.DefaultVerticalTemplateContentNew.ClearSizeLimit();
             WebApplication.Instance.SwitchToNewStyle();
             if(ConfigurationManager.ConnectionStrings["ConnectionString"] != null) {
                 WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -38,9 +39,11 @@ namespace RuntimeDbChooser.Web {
                 WebApplication.Instance.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTestConnectionString"].ConnectionString;
             }
 #endif
+#if DEBUG
             if(System.Diagnostics.Debugger.IsAttached && WebApplication.Instance.CheckCompatibilityType == CheckCompatibilityType.DatabaseSchema) {
                 WebApplication.Instance.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
+#endif
             WebApplication.Instance.Setup();
             WebApplication.Instance.Start();
         }

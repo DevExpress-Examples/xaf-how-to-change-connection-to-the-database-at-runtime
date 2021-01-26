@@ -1,19 +1,44 @@
 ﻿<%@ Page Language="c#" AutoEventWireup="false" Inherits="ErrorPage" EnableViewState="false"
     ValidateRequest="false" CodeBehind="Error.aspx.cs" %>
+
 <!DOCTYPE html>
 <html>
 <head id="Head1" runat="server">
     <title>Error</title>
     <meta http-equiv="Expires" content="0" />
+    <style type="text/css">
+        .ClosePopupBT
+        {
+            display:none;
+            top:20px;
+            right:20px;
+            position:absolute;
+            padding:9px 21px 8px 22px;
+            border-radius:3px;
+            background-color:white;
+            border:1px solid #c6c6c6;
+            font-size:14px;
+            color:#2C86D3;
+        }
+        input[type="button"]:hover
+        {
+          background-color:#f0f0f0;
+          cursor: pointer;
+        }
+        .PopupNewStyle .ClosePopupBT
+        {
+            display:block;
+        }
+    </style>
 </head>
 <body class="Dialog Error" onload="javascript:ClientPageLoad()">
     <div id="PageContent" class="PageContent DialogPageContent">
-        <table id="formTable" cellpadding="0" cellspacing="0" width="100%">
+        <table id="formTable">
             <tr>
                 <td>
                     <form id="form1" runat="server">
                     <div class="Header">
-                        <table cellpadding="0" cellspacing="0" border="0">
+                        <table border="0">
                             <tr>
                                 <td class="ViewCaption">
                                     <h1>
@@ -25,8 +50,9 @@
                                 </td>
                             </tr>
                         </table>
+                        <input type="button" class="ClosePopupBT" id="ClosePopupBT" onclick="Back();" value="Close"/>
                     </div>
-                    <table class="DialogContent Content" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <table class="DialogContent Content" border="0">
                         <tr>
                             <td class="ContentCell">
                                 <asp:Table ID="Table1" runat="server" Width="100%" BorderWidth="0px" CellPadding="0"
@@ -37,30 +63,21 @@
                                                 <asp:Literal ID="ErrorTitleLiteral" runat="server" Text="Application Error" /></h2>
                                             <asp:Panel runat="server" ID="ErrorPanel" Width="100%">
                                                 <p class="StaticText" id="MainErrorText">
-                                                    <asp:PlaceHolder ID="ReportResult" runat="server">Your report was sent. Thank you.<br />
-                                                    </asp:PlaceHolder>
                                                     <asp:PlaceHolder ID="ApologizeMessage" runat="server">
-                                                        We apologize, but an error occurred and your request could not be completed.<br />
+                                                        We are currently unable to serve your request.<br />
                                                     You could go&nbsp;<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="javascript:Back();">back</asp:HyperLink>&nbsp;and
                                                     try again or  
                                                     <asp:LinkButton ID="NavigateToStart" runat="server" OnClick="NavigateToStart_Click">restart the application</asp:LinkButton>.
                                                     </asp:PlaceHolder>
                                                 </p>
-                                                <p class="StaticText" id="PopupErrorText">
-                                                    <asp:PlaceHolder ID="PopupReportResult" runat="server">Your report was sent. Thank you.<br />
-                                                    </asp:PlaceHolder>
-                                                    <asp:PlaceHolder ID="PopupApologizeMessage" runat="server">
-                                                        We apologize, but an error occurred and your request could not be completed.<br />
-                                                    You could go&nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="javascript:Back();">back</asp:HyperLink>&nbsp;and
-                                                    try again.
-                                                    </asp:PlaceHolder>
-                                                </p>
+
                                                 <asp:Panel ID="Details" runat="server" Width="100%">
-                                                    <a style="text-decoration: underline; cursor: hand;" id="ShowErrorDetails" onclick="javascript:ShowDetails();">
+                                                    <a style="text-decoration: underline; cursor: pointer;" id="ShowErrorDetails" onclick="javascript:ShowDetails();">
                                                         Show Error details</a>
                                                     <div id="DetailsContent" style="display: none;">
-                                                        <span class="StaticText" style="font-weight: bold;">Error details<hr width="100%" />
-                                                        </span><a style="text-decoration: underline; cursor: hand;" id="HideErrorDetails"
+                                                        <span class="StaticText" style="font-weight: bold;">Error details</span>
+                                                        <hr />
+                                                        <a style="text-decoration: underline; cursor: pointer;" id="HideErrorDetails"
                                                             onclick="javascript:HideDetails();">Hide Error details</a>
                                                         <pre class="ErrorDetails">
                                                             <asp:Literal ID="DetailsText" runat="server" />
@@ -68,19 +85,19 @@
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="ReportForm" runat="server" Width="100%">
-                                                    <span class="StaticText" style="font-weight: bold;">Report error<hr width="100%" />
-                                                    </span>
+                                                    <span class="StaticText" style="font-weight: bold;">Report error</span>
+                                                    <hr />
                                                     <p class="StaticText">
                                                         This error has been logged. If you have additional information that you believe
                                                         may have caused this error please report the problem.</p>
-                                                    <table cellpadding="0" cellspacing="0" border="0">
+                                                    <table border="0">
                                                         <tr>
-                                                            <td align="right" style="padding-bottom: 10px">
+                                                            <td style="text-align: right; padding-bottom: 10px">
                                                                 <asp:TextBox ID="DescriptionTextBox" runat="server" Columns="60" Rows="8" TextMode="MultiLine"></asp:TextBox>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td align="right">
+                                                            <td style="text-align: right;">
                                                                 <asp:Button ID="ReportButton" runat="server" Text="Send Report" OnClick="ReportButton_Click" />
                                                             </td>
                                                         </tr>
@@ -99,12 +116,14 @@
                 </td>
             </tr>
         </table>
+
         <script type="text/javascript">
-	<!--
+            <!--
             function Back() {
-                if (window != window.top) {
-                    window.top.closeActiveXafPopupWindow();
-                } else {
+                if(window.xaf && xaf.Utils.isNestedWindow) {
+                    window.parent.closeActiveXafPopupWindow();
+                }
+                else {
                     history.go(-1);
                 }
                 return false;
@@ -120,18 +139,11 @@
                 return false;
             }
             function ClientPageLoad() {
-                var errorText = null;
-                if (window != window.top) {
-                    errorText = document.getElementById('MainErrorText');
-                    
-                } else {
-                    errorText = document.getElementById('PopupErrorText');
-                }
-                if (errorText) {
-                    errorText.style.display = 'none';
+                if(window != window.top) {
+                    document.getElementById('MainErrorText').style.display = 'none';
                 }
             }
-    //-->	    
+            //-->
         </script>
     </div>
 </body>

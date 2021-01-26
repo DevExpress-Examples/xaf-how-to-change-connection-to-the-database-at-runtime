@@ -1,114 +1,133 @@
-﻿Imports System
+﻿Imports Microsoft.VisualBasic
+Imports System
 Imports DevExpress.ExpressApp
 Imports System.ComponentModel
 Imports DevExpress.ExpressApp.Web
 Imports System.Collections.Generic
 Imports DevExpress.ExpressApp.Xpo
-Imports DevExpress.ExpressApp.Security.ClientServer
 Imports DevExpress.ExpressApp.Security
+Imports DevExpress.ExpressApp.Security.ClientServer
+Imports System.Collections.Concurrent
+Imports RuntimeDbChooser.Module.BusinessObjects
 
-Namespace RuntimeDbChooser.Web
-    ' For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWebWebApplicationMembersTopicAll.aspx
-    Partial Public Class RuntimeDbChooserAspNetApplication
-        Inherits WebApplication
+' For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Web.WebApplication
+Partial Public Class RuntimeDbChooserAspNetApplication
+    Inherits WebApplication
+    Private Shared _isCompatibilityChecked As ConcurrentDictionary(Of String, Boolean) = New ConcurrentDictionary(Of String, Boolean)()
+    Private Shared xpoDataStoreProviderDictionary As Dictionary(Of String, IXpoDataStoreProvider) = New Dictionary(Of String, IXpoDataStoreProvider)()
 
-        Private module1 As DevExpress.ExpressApp.SystemModule.SystemModule
-        Private module2 As DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule
-        Private module3 As RuntimeDbChooser.Module.RuntimeDbChooserModule
-        Private module4 As RuntimeDbChooser.Module.Web.RuntimeDbChooserAspNetModule
-        Private securityModule1 As DevExpress.ExpressApp.Security.SecurityModule
-        Private securityStrategyComplex1 As DevExpress.ExpressApp.Security.SecurityStrategyComplex
-        Private authenticationStandard1 As DevExpress.ExpressApp.Security.AuthenticationStandard
-        Private validationModule As DevExpress.ExpressApp.Validation.ValidationModule
-        Private validationAspNetModule As DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule
-        Shared Sub New()
-            EnableMultipleBrowserTabsSupport = True
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.AllowFilterControlHierarchy = True
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.MaxFilterControlHierarchyDepth = 3
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.AllowFilterControlHierarchyDefault = True
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.MaxHierarchyDepthDefault = 3
-            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = True
-            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = False
-            DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = True
-        End Sub
-        Public Sub New()
-            InitializeComponent()
-            InitializeDefaults()
-        End Sub
-        Private Sub InitializeDefaults()
-            LinkNewObjectToParentImmediately = False
-            OptimizedControllersCreation = True
-        End Sub
-        Protected Overrides Function CreateViewUrlManager() As IViewUrlManager
-            Return New ViewUrlManager()
-        End Function
-        Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
-            args.ObjectSpaceProviders.Add(New SecuredObjectSpaceProvider(CType(Security, SecurityStrategyComplex), args.ConnectionString, args.Connection))
-            args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
-        End Sub
-    
-        Private Sub RuntimeDbChooserAspNetApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles Me.DatabaseVersionMismatch
+    Private module1 As DevExpress.ExpressApp.SystemModule.SystemModule
+    Private module2 As DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule
+    Private module3 As RuntimeDbChooser.Module.RuntimeDbChooserModule
+    Private module4 As RuntimeDbChooser.Module.Web.RuntimeDbChooserAspNetModule
+
+    Private securityModule1 As DevExpress.ExpressApp.Security.SecurityModule
+    Private securityStrategyComplex1 As DevExpress.ExpressApp.Security.SecurityStrategyComplex
+    Private authenticationStandard1 As DevExpress.ExpressApp.Security.AuthenticationStandard
+    Private validationModule As DevExpress.ExpressApp.Validation.ValidationModule
+    Private validationAspNetModule As DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule
+
+    Public Sub New()
+        InitializeComponent()
+        ''CType(Security, SecurityStrategyComplex).Authentication = New RuntimeDbChooser.Module.ChangeDatabaseActiveDirectoryAuthentication()
+    End Sub
+
+
+    Protected Overrides Sub OnLoggingOn(ByVal args As LogonEventArgs)
+        MyBase.OnLoggingOn(args)
+        Dim targetDataBaseName As String = CType(args.LogonParameters, IDatabaseNameParameter).DatabaseName
+        CType(ObjectSpaceProviders(0), XPObjectSpaceProvider).SetDataStoreProvider(GetDataStoreProvider(MSSqlServerChangeDatabaseHelper.PatchConnectionString(targetDataBaseName, ConnectionString), Nothing))
+    End Sub
+    Protected Overrides Property IsCompatibilityChecked As Boolean
+        Get
+            Return _isCompatibilityChecked.GetOrAdd(ConnectionString, False)
+        End Get
+        Set(ByVal value As Boolean)
+            _isCompatibilityChecked.TryAdd(ConnectionString, value)
+        End Set
+    End Property
+    Protected Overrides Function CreateViewUrlManager() As IViewUrlManager
+        Return New ViewUrlManager()
+    End Function
+    Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
+        args.ObjectSpaceProvider = New SecuredObjectSpaceProvider(DirectCast(Me.Security, ISelectDataSecurityProvider), GetDataStoreProvider(args.ConnectionString, args.Connection), True)
+        args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
+    End Sub
+    Private Function GetDataStoreProvider(ByVal connectionString As String, ByVal connection As IDbConnection) As IXpoDataStoreProvider
+        Dim xpoDataStoreProvider As IXpoDataStoreProvider = Nothing
+
+        SyncLock xpoDataStoreProviderDictionary
+
+            If Not xpoDataStoreProviderDictionary.TryGetValue(connectionString, xpoDataStoreProvider) Then
+                xpoDataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, connection, False)
+                xpoDataStoreProviderDictionary(connectionString) = xpoDataStoreProvider
+            End If
+        End SyncLock
+
+        Return xpoDataStoreProvider
+    End Function
+    Private Sub RuntimeDbChooserAspNetApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles MyBase.DatabaseVersionMismatch
 #If EASYTEST Then
+        e.Updater.Update()
+        e.Handled = True
+#Else
+        If System.Diagnostics.Debugger.IsAttached Then
             e.Updater.Update()
             e.Handled = True
-#Else
-            If System.Diagnostics.Debugger.IsAttached Then
-                e.Updater.Update()
-                e.Handled = True
-            Else
-                Dim message As String = "The application cannot connect to the specified database, because the latter doesn't exist or its version is older than that of the application." & ControlChars.CrLf & "This error occurred  because the automatic database update was disabled when the application was started without debugging." & ControlChars.CrLf & "To avoid this error, you should either start the application under Visual Studio in debug mode, or modify the " & "source code of the 'DatabaseVersionMismatch' event handler to enable automatic database update, " & "or manually create a database using the 'DBUpdater' tool." & ControlChars.CrLf & "Anyway, refer to the following help topics for more detailed information:" & ControlChars.CrLf & "'Update Application and Database Versions' at http://help.devexpress.com/#Xaf/CustomDocument2795" & ControlChars.CrLf & "'Database Security References' at http://help.devexpress.com/#Xaf/CustomDocument3237" & ControlChars.CrLf & "If this doesn't help, please contact our Support Team at http://www.devexpress.com/Support/Center/"
+        Else
+            Dim message As String = "The application cannot connect to the specified database, " &
+                "because the database doesn't exist, its version is older " &
+                "than that of the application or its schema does not match " &
+                "the ORM data model structure. To avoid this error, use one " &
+                "of the solutions from the https://www.devexpress.com/kb=T367835 KB Article."
 
-                If e.CompatibilityError IsNot Nothing AndAlso e.CompatibilityError.Exception IsNot Nothing Then
-                    message &= ControlChars.CrLf & ControlChars.CrLf & "Inner exception: " & e.CompatibilityError.Exception.Message
-                End If
-                Throw New InvalidOperationException(message)
+            If e.CompatibilityError IsNot Nothing AndAlso e.CompatibilityError.Exception IsNot Nothing Then
+                message &= Constants.vbCrLf & Constants.vbCrLf & "Inner exception: " & e.CompatibilityError.Exception.Message
             End If
+            Throw New InvalidOperationException(message)
+        End If
 #End If
-        End Sub
-        Private Sub InitializeComponent()
-            Me.module1 = New DevExpress.ExpressApp.SystemModule.SystemModule()
-            Me.module2 = New DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule()
-            Me.module3 = New RuntimeDbChooser.[Module].RuntimeDbChooserModule()
-            Me.module4 = New RuntimeDbChooser.[Module].Web.RuntimeDbChooserAspNetModule()
-            Me.securityModule1 = New DevExpress.ExpressApp.Security.SecurityModule()
-            Me.securityStrategyComplex1 = New DevExpress.ExpressApp.Security.SecurityStrategyComplex()
-            Me.authenticationStandard1 = New DevExpress.ExpressApp.Security.AuthenticationStandard()
-            Me.validationModule = New DevExpress.ExpressApp.Validation.ValidationModule()
-            Me.validationAspNetModule = New DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule()
-            CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-            '
-            'securityStrategyComplex1
-            '
-            Me.securityStrategyComplex1.AllowAnonymousAccess = False
-            Me.securityStrategyComplex1.Authentication = Me.authenticationStandard1
-            Me.securityStrategyComplex1.PermissionsReloadMode = DevExpress.ExpressApp.Security.PermissionsReloadMode.NoCache
-            Me.securityStrategyComplex1.RoleType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole)
-            Me.securityStrategyComplex1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
-            '
-            'authenticationStandard1
-            '
-            Me.authenticationStandard1.LogonParametersType = GetType(RuntimeDbChooser.[Module].BusinessObjects.CustomLogonParametersForStandardAuthentication)
-            '
-            'validationModule
-            '
-            Me.validationModule.AllowValidationDetailsAccess = True
-            Me.validationModule.IgnoreWarningAndInformationRules = False
-            '
-            'RuntimeDbChooserAspNetApplication
-            '
-            Me.ApplicationName = "RuntimeDbChooser"
-            Me.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema
-            Me.LinkNewObjectToParentImmediately = False
-            Me.Modules.Add(Me.module1)
-            Me.Modules.Add(Me.module2)
-            Me.Modules.Add(Me.validationModule)
-            Me.Modules.Add(Me.securityModule1)
-            Me.Modules.Add(Me.module3)
-            Me.Modules.Add(Me.validationAspNetModule)
-            Me.Modules.Add(Me.module4)
-            Me.Security = Me.securityStrategyComplex1
-            CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+    End Sub
+    Private Sub InitializeComponent()
+        Me.module1 = New DevExpress.ExpressApp.SystemModule.SystemModule()
+        Me.module2 = New DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule()
+        Me.module3 = New RuntimeDbChooser.Module.RuntimeDbChooserModule()
+        Me.module4 = New RuntimeDbChooser.Module.Web.RuntimeDbChooserAspNetModule()
+        Me.securityModule1 = New DevExpress.ExpressApp.Security.SecurityModule()
+        Me.securityStrategyComplex1 = New DevExpress.ExpressApp.Security.SecurityStrategyComplex()
+        Me.securityStrategyComplex1.SupportNavigationPermissionsForTypes = False
+        Me.authenticationStandard1 = New DevExpress.ExpressApp.Security.AuthenticationStandard()
+        Me.validationModule = New DevExpress.ExpressApp.Validation.ValidationModule()
+        Me.validationAspNetModule = New DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule()
+        CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        ' 
+        ' securityStrategyComplex1
+        ' 
+        Me.securityStrategyComplex1.Authentication = Me.authenticationStandard1
+        Me.securityStrategyComplex1.RoleType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole)
+        Me.securityStrategyComplex1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
+        ' 
+        ' securityModule1
+        ' 
+        Me.securityModule1.UserType = GetType(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser)
+        ' 
+        ' authenticationStandard1
+        ' 
+        Me.authenticationStandard1.LogonParametersType = GetType(RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication)
+        ' 
+        ' RuntimeDbChooserAspNetApplication
+        ' 
+        Me.ApplicationName = "RuntimeDbChooser"
+        Me.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema
+        Me.Modules.Add(Me.module1)
+        Me.Modules.Add(Me.module2)
+        Me.Modules.Add(Me.module3)
+        Me.Modules.Add(Me.module4)
+        Me.Modules.Add(Me.securityModule1)
+        Me.Security = Me.securityStrategyComplex1
+        Me.Modules.Add(Me.validationModule)
+        Me.Modules.Add(Me.validationAspNetModule)
+        CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
+    End Sub
+End Class
 
-        End Sub
-    End Class
-End Namespace

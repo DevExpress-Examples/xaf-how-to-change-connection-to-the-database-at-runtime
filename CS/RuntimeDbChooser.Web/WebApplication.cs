@@ -1,15 +1,20 @@
 ﻿using System;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.Web;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using DevExpress.ExpressApp.Xpo;
-using DevExpress.ExpressApp.Security.ClientServer;
+using System.Data;
+using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Security;
+using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Web;
+using DevExpress.ExpressApp.Xpo;
+using RuntimeDbChooser.Module.BusinessObjects;
 
 namespace RuntimeDbChooser.Web {
-    // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWebWebApplicationMembersTopicAll.aspx
+    // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Web.WebApplication
     public partial class RuntimeDbChooserAspNetApplication : WebApplication {
+        private static ConcurrentDictionary<string, bool> isCompatibilityChecked = new ConcurrentDictionary<string, bool>();
+        private static Dictionary<string, IXpoDataStoreProvider> xpoDataStoreProviderDictionary = new Dictionary<string, IXpoDataStoreProvider>();
+
         private DevExpress.ExpressApp.SystemModule.SystemModule module1;
         private DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule module2;
         private RuntimeDbChooser.Module.RuntimeDbChooserModule module3;
@@ -20,51 +25,47 @@ namespace RuntimeDbChooser.Web {
         private DevExpress.ExpressApp.Validation.ValidationModule validationModule;
         private DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule validationAspNetModule;
 
-        static RuntimeDbChooserAspNetApplication() {
-            EnableMultipleBrowserTabsSupport = true;
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.AllowFilterControlHierarchy = true;
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxGridListEditor.MaxFilterControlHierarchyDepth = 3;
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.AllowFilterControlHierarchyDefault = true;
-            DevExpress.ExpressApp.Web.Editors.ASPx.ASPxCriteriaPropertyEditor.MaxHierarchyDepthDefault = 3;
-            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = true;
-            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = false;
-            DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = true;
-        }
-        private void InitializeDefaults() {
-            LinkNewObjectToParentImmediately = false;
-            OptimizedControllersCreation = true;
-        }
         public RuntimeDbChooserAspNetApplication() {
             InitializeComponent();
-            InitializeDefaults();
+            //((SecurityStrategyComplex)Security).Authentication = new Module.ChangeDatabaseActiveDirectoryAuthentication();
         }
-        protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
-            args.ObjectSpaceProviders.Add(new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, args.ConnectionString, args.Connection));
-            args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
+
+        protected override void OnLoggingOn(LogonEventArgs args)
+        {
+            base.OnLoggingOn(args);
+            string targetDataBaseName = ((IDatabaseNameParameter)args.LogonParameters).DatabaseName;
+            ((XPObjectSpaceProvider)ObjectSpaceProviders[0]).SetDataStoreProvider(
+                GetDataStoreProvider(MSSqlServerChangeDatabaseHelper.PatchConnectionString(targetDataBaseName, ConnectionString),
+                null));
+        }
+        protected override bool IsCompatibilityChecked {
+            get {
+                return isCompatibilityChecked.GetOrAdd(ConnectionString, false);
+            }
+
+            set {
+                isCompatibilityChecked.TryAdd(ConnectionString, value);
+            }
         }
         protected override IViewUrlManager CreateViewUrlManager() {
             return new ViewUrlManager();
         }
-        private void CreateXPObjectSpaceProvider(string connectionString, CreateCustomObjectSpaceProviderEventArgs e) {
-            //System.Web.HttpApplicationState application = (System.Web.HttpContext.Current != null) ? System.Web.HttpContext.Current.Application : null;
-            //IXpoDataStoreProvider dataStoreProvider = null;
-            //if(application != null && application["DataStoreProvider"] != null) {
-            //    dataStoreProvider = application["DataStoreProvider"] as IXpoDataStoreProvider;
-            //    e.ObjectSpaceProvider = new XPObjectSpaceProvider(dataStoreProvider, true);
-            //}
-            //else {
-            //    if(!String.IsNullOrEmpty(connectionString)) {
-            //        connectionString = DevExpress.Xpo.XpoDefault.GetConnectionPoolString(connectionString);
-            //        dataStoreProvider = new ConnectionStringDataStoreProvider(connectionString, true);
-            //    }
-            //    else if(e.Connection != null) {
-            //        dataStoreProvider = new ConnectionDataStoreProvider(e.Connection);
-            //    }
-            //    if (application != null) {
-            //        application["DataStoreProvider"] = dataStoreProvider;
-            //    }
-            //    e.ObjectSpaceProvider = new XPObjectSpaceProvider(dataStoreProvider, true);
-            //}
+        protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
+            args.ObjectSpaceProvider = new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, GetDataStoreProvider(args.ConnectionString, args.Connection), true);
+            args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
+        }
+        private IXpoDataStoreProvider GetDataStoreProvider(string connectionString, System.Data.IDbConnection connection) {
+            IXpoDataStoreProvider xpoDataStoreProvider;
+            lock (xpoDataStoreProviderDictionary)
+            {
+                if (!xpoDataStoreProviderDictionary.TryGetValue(connectionString, out xpoDataStoreProvider))
+                {
+                    //TODO Minakov the enablePoolingInConnectionString parameter should be true. Change after IObjectSpace.DataBase fix
+                    xpoDataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, connection, false);
+                    xpoDataStoreProviderDictionary[connectionString] = xpoDataStoreProvider;
+                }
+            }
+            return xpoDataStoreProvider;
         }
         private void RuntimeDbChooserAspNetApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e) {
 #if EASYTEST
@@ -76,15 +77,11 @@ namespace RuntimeDbChooser.Web {
                 e.Handled = true;
             }
             else {
-                string message = "The application cannot connect to the specified database, because the latter doesn't exist or its version is older than that of the application.\r\n" +
-                    "This error occurred  because the automatic database update was disabled when the application was started without debugging.\r\n" +
-                    "To avoid this error, you should either start the application under Visual Studio in debug mode, or modify the " +
-                    "source code of the 'DatabaseVersionMismatch' event handler to enable automatic database update, " +
-                    "or manually create a database using the 'DBUpdater' tool.\r\n" +
-                    "Anyway, refer to the following help topics for more detailed information:\r\n" +
-                    "'Update Application and Database Versions' at http://help.devexpress.com/#Xaf/CustomDocument2795\r\n" +
-                    "'Database Security References' at http://help.devexpress.com/#Xaf/CustomDocument3237\r\n" +
-                    "If this doesn't help, please contact our Support Team at http://www.devexpress.com/Support/Center/";
+				string message = "The application cannot connect to the specified database, " +
+					"because the database doesn't exist, its version is older " +
+					"than that of the application or its schema does not match " +
+					"the ORM data model structure. To avoid this error, use one " +
+					"of the solutions from the https://www.devexpress.com/kb=T367835 KB Article.";
 
                 if(e.CompatibilityError != null && e.CompatibilityError.Exception != null) {
                     message += "\r\n\r\nInner exception: " + e.CompatibilityError.Exception.Message;
@@ -100,6 +97,7 @@ namespace RuntimeDbChooser.Web {
             this.module4 = new RuntimeDbChooser.Module.Web.RuntimeDbChooserAspNetModule();
             this.securityModule1 = new DevExpress.ExpressApp.Security.SecurityModule();
             this.securityStrategyComplex1 = new DevExpress.ExpressApp.Security.SecurityStrategyComplex();
+            this.securityStrategyComplex1.SupportNavigationPermissionsForTypes = false;
             this.authenticationStandard1 = new DevExpress.ExpressApp.Security.AuthenticationStandard();
             this.validationModule = new DevExpress.ExpressApp.Validation.ValidationModule();
             this.validationAspNetModule = new DevExpress.ExpressApp.Validation.Web.ValidationAspNetModule();
@@ -107,34 +105,30 @@ namespace RuntimeDbChooser.Web {
             // 
             // securityStrategyComplex1
             // 
-            this.securityStrategyComplex1.AllowAnonymousAccess = false;
             this.securityStrategyComplex1.Authentication = this.authenticationStandard1;
-            this.securityStrategyComplex1.PermissionsReloadMode = DevExpress.ExpressApp.Security.PermissionsReloadMode.NoCache;
             this.securityStrategyComplex1.RoleType = typeof(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole);
             this.securityStrategyComplex1.UserType = typeof(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser);
+            // 
+            // securityModule1
+            // 
+            this.securityModule1.UserType = typeof(DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser);
             // 
             // authenticationStandard1
             // 
             this.authenticationStandard1.LogonParametersType = typeof(RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication);
             // 
-            // validationModule
-            // 
-            this.validationModule.AllowValidationDetailsAccess = true;
-            this.validationModule.IgnoreWarningAndInformationRules = false;
-            // 
             // RuntimeDbChooserAspNetApplication
             // 
             this.ApplicationName = "RuntimeDbChooser";
             this.CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
-            this.LinkNewObjectToParentImmediately = false;
             this.Modules.Add(this.module1);
             this.Modules.Add(this.module2);
-            this.Modules.Add(this.validationModule);
-            this.Modules.Add(this.securityModule1);
             this.Modules.Add(this.module3);
-            this.Modules.Add(this.validationAspNetModule);
             this.Modules.Add(this.module4);
+            this.Modules.Add(this.securityModule1);
             this.Security = this.securityStrategyComplex1;
+            this.Modules.Add(this.validationModule);
+            this.Modules.Add(this.validationAspNetModule);
             this.DatabaseVersionMismatch += new System.EventHandler<DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs>(this.RuntimeDbChooserAspNetApplication_DatabaseVersionMismatch);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 

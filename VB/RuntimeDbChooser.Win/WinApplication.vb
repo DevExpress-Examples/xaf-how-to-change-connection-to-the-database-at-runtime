@@ -1,58 +1,73 @@
-﻿Imports System
+﻿Imports Microsoft.VisualBasic
+Imports System
 Imports System.ComponentModel
 Imports DevExpress.ExpressApp
 Imports DevExpress.ExpressApp.Win
 Imports System.Collections.Generic
 Imports DevExpress.ExpressApp.Updating
-Imports DevExpress.ExpressApp.Xpo
-Imports DevExpress.ExpressApp.Security.ClientServer
-Imports DevExpress.ExpressApp.Security
 Imports DevExpress.ExpressApp.Win.Utils
+Imports DevExpress.ExpressApp.Xpo
+Imports DevExpress.ExpressApp.Security
+Imports DevExpress.ExpressApp.Security.ClientServer
+Imports DevExpress.ExpressApp.Security.Strategy
+Imports RuntimeDbChooser.Module.BusinessObjects
 
-Namespace RuntimeDbChooser.Win
-    ' For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWinWinApplicationMembersTopicAll.aspx
-    Partial Public Class RuntimeDbChooserWindowsFormsApplication
-        Inherits WinApplication
-        Shared Sub New()
-            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = True
-            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = False
-            DevExpress.ExpressApp.BaseObjectSpace.ThrowExceptionForNotRegisteredEntityType = True
-            DevExpress.ExpressApp.Utils.ImageLoader.Instance.UseSvgImages = True
-            DetailView.UseAsyncLoading = True
-        End Sub
-        Private Sub InitializeDefaults()
-            LinkNewObjectToParentImmediately = False
-            OptimizedControllersCreation = True
-            UseLightStyle = True
-            
-            ExecuteStartupLogicBeforeClosingLogonWindow = True
-        End Sub
-        Public Sub New()
-            InitializeComponent()
-            InitializeDefaults()
-        End Sub
-        Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
-            args.ObjectSpaceProvider = New SecuredObjectSpaceProvider(CType(Security, SecurityStrategyComplex), args.ConnectionString, args.Connection)
-            args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
-        End Sub
-        Private Sub RuntimeDbChooserWindowsFormsApplication_CustomizeLanguagesList(ByVal sender As Object, ByVal e As CustomizeLanguagesListEventArgs) Handles Me.CustomizeLanguagesList
-            Dim userLanguageName As String = System.Threading.Thread.CurrentThread.CurrentUICulture.Name
-            If userLanguageName <> "en-US" AndAlso e.Languages.IndexOf(userLanguageName) = -1 Then
-                e.Languages.Add(userLanguageName)
-            End If
-        End Sub
-        Private Sub RuntimeDbChooserWindowsFormsApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles Me.DatabaseVersionMismatch
+' For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Win.WinApplication._members
+Partial Public Class RuntimeDbChooserWindowsFormsApplication
+    Inherits WinApplication
+
+    Private Shared _isCompatibilityChecked As Dictionary(Of String, Boolean) = New Dictionary(Of String, Boolean)()
+
+    Public Sub New()
+        InitializeComponent()
+        CType(Security, SecurityStrategyComplex).Authentication = New AuthenticationStandard(Of SecuritySystemUser, CustomLogonParametersForStandardAuthentication)()
+        ''CType(Security, SecurityStrategyComplex).Authentication = New RuntimeDbChooser.Module.ChangeDatabaseActiveDirectoryAuthentication()
+        SplashScreen = New DXSplashScreen(GetType(XafSplashScreen), New DefaultOverlayFormOptions())
+    End Sub
+
+    Protected Overrides Sub OnLoggingOn(ByVal args As LogonEventArgs)
+        MyBase.OnLoggingOn(args)
+        Dim targetDataBaseName As String = CType(args.LogonParameters, IDatabaseNameParameter).DatabaseName
+        ObjectSpaceProvider.ConnectionString = MSSqlServerChangeDatabaseHelper.PatchConnectionString(targetDataBaseName, ConnectionString)
+    End Sub
+    Protected Overrides Property IsCompatibilityChecked As Boolean
+        Get
+            Return If(_isCompatibilityChecked.ContainsKey(ConnectionString), _isCompatibilityChecked(ConnectionString), False)
+        End Get
+        Set(ByVal value As Boolean)
+            _isCompatibilityChecked(ConnectionString) = value
+        End Set
+    End Property
+    Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
+        args.ObjectSpaceProviders.Add(New SecuredObjectSpaceProvider(DirectCast(Security, SecurityStrategyComplex), XPObjectSpaceProvider.GetDataStoreProvider(args.ConnectionString, args.Connection, False), False))
+        args.ObjectSpaceProviders.Add(New NonPersistentObjectSpaceProvider(TypesInfo, Nothing))
+    End Sub
+    Private Sub RuntimeDbChooserWindowsFormsApplication_DatabaseVersionMismatch(ByVal sender As Object, ByVal e As DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs) Handles MyBase.DatabaseVersionMismatch
 #If EASYTEST Then
+        e.Updater.Update()
+        e.Handled = True
+#Else
+        If System.Diagnostics.Debugger.IsAttached Then
             e.Updater.Update()
             e.Handled = True
-#Else
-            If System.Diagnostics.Debugger.IsAttached Then
-                e.Updater.Update()
-                e.Handled = True
-            Else
-                Throw New InvalidOperationException("The application cannot connect to the specified database, because the latter doesn't exist or its version is older than that of the application." & ControlChars.CrLf & "This error occurred  because the automatic database update was disabled when the application was started without debugging." & ControlChars.CrLf & "To avoid this error, you should either start the application under Visual Studio in debug mode, or modify the " & "source code of the 'DatabaseVersionMismatch' event handler to enable automatic database update, " & "or manually create a database using the 'DBUpdater' tool." & ControlChars.CrLf & "Anyway, refer to the 'Update Application and Database Versions' help topic at http://help.devexpress.com/#Xaf/CustomDocument2795 " & "for more detailed information. If this doesn't help, please contact our Support Team at http://www.devexpress.com/Support/Center/")
+        Else
+            Dim message As String = "The application cannot connect to the specified database, " &
+                "because the database doesn't exist, its version is older " &
+                "than that of the application or its schema does not match " &
+                "the ORM data model structure. To avoid this error, use one " &
+                "of the solutions from the https://www.devexpress.com/kb=T367835 KB Article."
+
+            If e.CompatibilityError IsNot Nothing AndAlso e.CompatibilityError.Exception IsNot Nothing Then
+                message &= Constants.vbCrLf & Constants.vbCrLf & "Inner exception: " & e.CompatibilityError.Exception.Message
             End If
+            Throw New InvalidOperationException(message)
+        End If
 #End If
-        End Sub
-    End Class
-End Namespace
+    End Sub
+    Private Shared Sub RuntimeDbChooserWindowsFormsApplication_CustomizeLanguagesList(ByVal sender As Object, ByVal e As CustomizeLanguagesListEventArgs) Handles MyBase.CustomizeLanguagesList
+        Dim userLanguageName As String = System.Threading.Thread.CurrentThread.CurrentUICulture.Name
+        If userLanguageName <> "en-US" And e.Languages.IndexOf(userLanguageName) = -1 Then
+            e.Languages.Add(userLanguageName)
+        End If
+    End Sub
+End Class

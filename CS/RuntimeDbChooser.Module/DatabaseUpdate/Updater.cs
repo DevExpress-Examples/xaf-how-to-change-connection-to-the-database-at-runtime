@@ -5,6 +5,7 @@ using DevExpress.Data.Filtering;
 using DevExpress.Persistent.Base;
 using DevExpress.ExpressApp.Updating;
 using DevExpress.ExpressApp.Security;
+using DevExpress.ExpressApp.SystemModule;
 using DevExpress.ExpressApp.Security.Strategy;
 using DevExpress.Xpo;
 using DevExpress.ExpressApp.Xpo;
@@ -12,8 +13,8 @@ using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.BaseImpl.PermissionPolicy;
 
 namespace RuntimeDbChooser.Module.DatabaseUpdate {
-	// For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/clsDevExpressExpressAppUpdatingModuleUpdatertopic.aspx
-	public class Updater : ModuleUpdater {
+    // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Updating.ModuleUpdater
+    public class Updater : ModuleUpdater {
 		public Updater(IObjectSpace objectSpace, Version currentDBVersion) :
 			base(objectSpace, currentDBVersion) {
 		}
@@ -59,9 +60,6 @@ namespace RuntimeDbChooser.Module.DatabaseUpdate {
 		}
 		public override void UpdateDatabaseBeforeUpdateSchema() {
 			base.UpdateDatabaseBeforeUpdateSchema();
-			//if(CurrentDBVersion < new Version("1.1.0.0") && CurrentDBVersion > new Version("0.0.0.0")) {
-			//    RenameColumn("DomainObject1Table", "OldColumnName", "NewColumnName");
-			//}
 		}
 		private PermissionPolicyRole CreateDefaultRole() {
 			PermissionPolicyRole defaultRole = ObjectSpace.FindObject<PermissionPolicyRole>(new BinaryOperator("Name", "Default"));
@@ -69,17 +67,22 @@ namespace RuntimeDbChooser.Module.DatabaseUpdate {
 				defaultRole = ObjectSpace.CreateObject<PermissionPolicyRole>();
 				defaultRole.Name = "Default";
 
-                defaultRole.AddTypePermissionsRecursively<PermissionPolicyUser>(SecurityOperations.FullAccess, SecurityPermissionState.Deny);
-                defaultRole.AddTypePermissionsRecursively<PermissionPolicyRole>(SecurityOperations.FullAccess, SecurityPermissionState.Deny);
-                defaultRole.SetTypePermission<PermissionPolicyTypePermissionObject>(SecurityOperations.Read, SecurityPermissionState.Allow);
+                defaultRole.PermissionPolicy = SecurityPermissionPolicy.AllowAllByDefault;
+                defaultRole.AddNavigationPermission("Application/NavigationItems/Items/Default/Items/PermissionPolicyRole_ListView", SecurityPermissionState.Deny);
+                defaultRole.AddNavigationPermission("Application/NavigationItems/Items/Default/Items/PermissionPolicyUser_ListView", SecurityPermissionState.Deny);
+                defaultRole.AddTypePermission<PermissionPolicyRole>(SecurityOperations.FullAccess, SecurityPermissionState.Deny);
+                defaultRole.AddTypePermission<PermissionPolicyUser>(SecurityOperations.FullAccess, SecurityPermissionState.Deny);
                 defaultRole.AddObjectPermission<PermissionPolicyUser>(SecurityOperations.ReadOnlyAccess, "[Oid] = CurrentUserId()", SecurityPermissionState.Allow);
-                //  userRole.AddNavigationPermission("Application/NavigationItems/Items/Default/Items/Contact_ListView", SecurityPermissionState.Allow);
                 defaultRole.AddMemberPermission<PermissionPolicyUser>(SecurityOperations.Write, "ChangePasswordOnFirstLogon", null, SecurityPermissionState.Allow);
                 defaultRole.AddMemberPermission<PermissionPolicyUser>(SecurityOperations.Write, "StoredPassword", null, SecurityPermissionState.Allow);
-                defaultRole.AddTypePermissionsRecursively<PermissionPolicyRole>(SecurityOperations.Read, SecurityPermissionState.Allow);
-                defaultRole.AddTypePermissionsRecursively<AuditDataItemPersistent>(SecurityOperations.CRUDAccess, SecurityPermissionState.Allow);
+                defaultRole.AddTypePermission<PermissionPolicyRole>(SecurityOperations.Read, SecurityPermissionState.Allow);
+                defaultRole.AddTypePermission<PermissionPolicyTypePermissionObject>("Write;Delete;Create", SecurityPermissionState.Deny);
+                defaultRole.AddTypePermission<PermissionPolicyMemberPermissionsObject>("Write;Delete;Create", SecurityPermissionState.Deny);
+                defaultRole.AddTypePermission<PermissionPolicyObjectPermissionsObject>("Write;Delete;Create", SecurityPermissionState.Deny);
+                defaultRole.AddTypePermission<PermissionPolicyNavigationPermissionObject>("Write;Delete;Create", SecurityPermissionState.Deny);
+                defaultRole.AddTypePermission<PermissionPolicyActionPermissionObject>("Write;Delete;Create", SecurityPermissionState.Deny);
             }
 			return defaultRole;
 		}
-	}
+    }
 }

@@ -34,57 +34,57 @@
         }
 
         #main {
-            padding: 5px 30px;
+            padding: 5px 15px;
         }
 
         .section {
-            width: 15.5%;
+            width: 18%;
             float: left;
-            min-width : 205px;
+            min-width : 200px;
             margin: 10px 0 0 15px;
         }
 
-            .section h2 {
-                font-size: 13px;
-                text-transform: uppercase;
-                margin: 0;
-                border-bottom: 1px solid silver;
-                padding-bottom: 12px;
-                margin-bottom: 8px;
-            }
+        .section h2 {
+            font-size: 13px;
+            text-transform: uppercase;
+            margin: 0;
+            border-bottom: 1px solid silver;
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+        }
 
-            .section.first {
-                margin-left: 0;
-                margin-right : 14px;
-                width: 32.0%;
-                min-width : 350px;
-            }
+        .section.first {
+            margin-left: 0;
+            margin-right : 14px;
+            width: 10%;
+            min-width : 330px;
+        }
 
-                .section.first h2 {
-                    font-size: 14px;
-                    text-transform: none;
-                    margin-bottom: 2px;
-                    border: none;
-                }
+        .section.first h2 {
+            font-size: 14px;
+            text-transform: none;
+            margin-bottom: 2px;
+            border: none;
+        }
 
-                .section.first li {
-                    border-top: 1px solid silver;
-                    padding: 8px 0;
-                }
+        .section.first li {
+            border-top: 1px solid silver;
+            padding: 8px 0;
+        }
 
-            .section.last {
-                margin-right: 0;
-            }
+        .section.last {
+            margin-right: 0;
+        }
 
         ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            line-height: 20px;
+            line-height: 18px;
         }
 
         li {
-            padding: 4px 0;
+            padding: 6px 0;
         }
 
         a {
@@ -92,21 +92,19 @@
             text-decoration: none;
         }
 
-            a:hover {
-                text-decoration: underline;
-            }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-
     <div id="header">
         <p>Congratulations! You've created a project</p>
     </div>
-
     <div id="main" style="width:100%">
-		<table style="width:100%">
-		<tr>
-		<td style="width:350px; vertical-align:top; min-width:350px">
+        <table style="width:100%">
+        <tr>
+        <td style="width:330px; vertical-align:top">
         <div class="section first">
             <h2>The XAF Solution Wizard has successfully generated the solution according to your settings.</h2>
             <ul>
@@ -114,52 +112,76 @@
                 Add persistent objects code to the <b>Business Objects</b> folder of this project and XAF will automatically create a UI to create, read, update and delete these persistent objects.</li>
                 <li>The <b>RuntimeDbChooser.Win</b> project is a startup project for the desktop application.</li>
                 <li>The <b>RuntimeDbChooser.Web</b> project is a startup project for the web application.</li>
-				<li>To specify the database used by your application, modify the ConnectionString attribute in the configuration file located in the startup project.</li>
-				<li>To login, enter the <b>"Admin"</b> user name with empty password.</li>
+                <li>To specify the database used by your application, modify the ConnectionString attribute in the configuration file located in the startup project.</li>
+                <li>To login, enter the <b>"Admin"</b> user name with empty password.</li>
             </ul>
         </div>
-		</td>
-		<td style="vertical-align:top">
+        </td>
+        <td style="vertical-align:top">
         <div class="section">
-            <h2>1. Design data model</h2>
+            <h2>1. Design Data Model</h2>
             <ul>
-                <li><a href="https://documentation.devexpress.com/#Xaf/CustomDocument3586">Define the Logical Data Model and Relationships</a></li>
-                <li><a href="https://documentation.devexpress.com/#Xaf/CustomDocument2847">Ways to Add a Business Class</a></li>
-                <li><a href="https://documentation.devexpress.com/#Xaf/CustomDocument2600">Business Model Design with XPO</a></li>
-                <li><a href="https://documentation.devexpress.com/#Xaf/CustomDocument2788">Supply Initial Data</a></li>
-                <li><a href="https://documentation.devexpress.com/#Xaf/CustomDocument3583">Custom Fields</a></li>
-                <li><a href="https://documentation.devexpress.com/#Xaf/CustomDocument2701">Built-in Attributes</a></li>
-				<li><a href="https://help.devexpress.com/#Xaf/CustomDocument3014">Supported Data Types and Editors</a></li>
-            </ul>
-        </div>
-        <div class="section">
-            <h2>2. Customize UI metadata</h2>
-            <ul>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument2748">UI Customization</a></li>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument2579">Application Model</a></li>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument3298">Localization</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112847">Ways to Add a Business Class</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113586">Define the Logical Data Model and Relationships</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113525">Display Member of a Business Class</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113014">Data Types Supported by Built-in Editors</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/117395">PropertyChanged Event in Business Classes</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112600">Business Model Design with XPO</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112788">Supply Initial Data</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112701">Data Annotations in Data Model</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113583">Customize Business Class Metadata Dynamically</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/116516">Non-Persistent Objects</a></li>
             </ul>
         </div>
         <div class="section">
-            <h2>3. Implement custom behavior</h2>
+            <h2>2. Customize UI Structure</h2>
             <ul>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument2740">Extend Functionality (Tutorial)</a></li>
-                <li><a href="https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument113708">Data Manipulation and Business Logic</a></li>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument2621">Controllers</a></li>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument3097">Implement Custom Property Editors</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112569">Application Solution Components</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113445">Application Personalization</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112579">Application UI Model</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112607">UI Element Overview</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112748">UI Customization</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112843">Design-Time Features</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113298">Localization</a></li>
+            </ul>
+        </div>
+        <div class="section" style="min-width : 220px">
+            <h2>3. Implement Custom Behavior</h2>
+            <ul>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113708">Data Manipulation and Business Logic</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112623">Controllers and Actions</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112803">Ways to Show a View</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112740">Extend Functionality</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/120092">Access UI Elements and Their Controls</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113610">Using a Custom Control that is not Integrated by Default</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112572">Debugging and Error Handling</a></li>
             </ul>
         </div>
         <div class="section">
-            <h2>4. Deployment</h2>
+            <h2>4. Test and Deploy</h2>
             <ul>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument3033">Redistribution and Deployment</a></li>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument3231">Deployment Tutorial</a></li>
-                <li><a href="https://help.devexpress.com/#Xaf/CustomDocument3238">Deployment Troubleshooting Guide</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112572">Unit and Functional Testing</a></li>
+                <li><a href="https://www.devexpress.com/kb=T148978">Measure and Improve Performance</a></li>
+                <li><a href="https://nuget.devexpress.com">Optimize CI/CD Processes with NuGet</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113033">Redistribution and Deployment</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113231">Deployment Tutorial</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113238">Deployment Troubleshooting</a></li>
             </ul>
         </div>
-		</td>
-		</tr>
-		</table>
+        <div class="section">
+            <h2>5. Get Support and Learn</h2>
+            <ul>
+                <li><a href="https://www.devexpress.com/sc">Search the KB, Examples and Support Tickets</a></li>
+                <li><a href="https://www.devexpress.com/go/XAF_Community_Consulting_Training.aspx">XAF Community, Consulting and Training</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/113054">Frequently Asked Questions (FAQ)</a></li>
+                <li><a href="https://docs.devexpress.com/eXpressAppFramework/112682/">Task-Based Help By Categories</a></li>
+                <li><a href="https://community.devexpress.com/blogs/xaf/">Development Blog</a></li>
+                <li><a href="https://www.devexpress.com/go/XAF_Roadmap.aspx">Roadmap</a></li>
+            </ul>
+        </div>
+        </td>
+        </tr>
+        </table>
     </div>
     <div id="footer">
         <ul><li>If you have questions or need assistance, our <a href="https://www.devexpress.com/Support/Center/">best-in-class support service</a> is ready to help you.</li></ul>

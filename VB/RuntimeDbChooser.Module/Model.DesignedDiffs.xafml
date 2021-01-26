@@ -1,11 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Application Title="RuntimeDbChooser" Logo="ExpressAppLogo">
+﻿<?xml version="1.0" ?>
+<Application Title="RuntimeDbChooser">
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
-  <SchemaModules>
-    <SchemaModule Name="SystemModule" Version="20.1.6.0" IsNewNode="True" />
-  </SchemaModules>
   <Views>
     <DetailView Id="CustomLogonParametersForStandardAuthentication_DetailView">
       <Items>

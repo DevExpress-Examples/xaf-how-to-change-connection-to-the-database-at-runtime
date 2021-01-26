@@ -4,29 +4,42 @@ using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Win;
 using System.Collections.Generic;
 using DevExpress.ExpressApp.Updating;
+using DevExpress.ExpressApp.Win.Utils;
 using DevExpress.ExpressApp.Xpo;
-using DevExpress.ExpressApp.Security.ClientServer;
 using DevExpress.ExpressApp.Security;
+using DevExpress.ExpressApp.Security.ClientServer;
+using DevExpress.ExpressApp.Security.Strategy;
+using RuntimeDbChooser.Module.BusinessObjects;
 
 namespace RuntimeDbChooser.Win {
-    // For more typical usage scenarios, be sure to check out https://documentation.devexpress.com/eXpressAppFramework/DevExpressExpressAppWinWinApplicationMembersTopicAll.aspx
+    // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Win.WinApplication._members
     public partial class RuntimeDbChooserWindowsFormsApplication : WinApplication {
-        static RuntimeDbChooserWindowsFormsApplication() {
-            DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = true;
-            DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = false;
-            DevExpress.ExpressApp.Utils.ImageLoader.Instance.UseSvgImages = true;
-        }
-        private void InitializeDefaults() {
-            LinkNewObjectToParentImmediately = false;
-            OptimizedControllersCreation = true;
-            UseLightStyle = true;
-        }
+        private static Dictionary<string, bool> isCompatibilityChecked = new Dictionary<string, bool>();
+
         public RuntimeDbChooserWindowsFormsApplication() {
-            InitializeComponent();
-            InitializeDefaults();
+			InitializeComponent();
+            ((SecurityStrategyComplex)Security).Authentication = new AuthenticationStandard<SecuritySystemUser, CustomLogonParametersForStandardAuthentication>();
+            //((SecurityStrategyComplex)Security).Authentication = new ChangeDatabaseActiveDirectoryAuthentication();
+            SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
+        }
+
+        protected override void OnLoggingOn(LogonEventArgs args)
+        {
+            base.OnLoggingOn(args);
+            string targetDataBaseName = ((IDatabaseNameParameter)args.LogonParameters).DatabaseName;
+            ObjectSpaceProvider.ConnectionString = MSSqlServerChangeDatabaseHelper.PatchConnectionString(targetDataBaseName, ConnectionString);
+        }
+        protected override bool IsCompatibilityChecked {
+            get {
+                return isCompatibilityChecked.ContainsKey(ConnectionString) ? isCompatibilityChecked[ConnectionString] : false;
+            }
+
+            set {
+                isCompatibilityChecked[ConnectionString] = value;
+            }
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
-            args.ObjectSpaceProvider = new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, args.ConnectionString, args.Connection);
+            args.ObjectSpaceProviders.Add(new SecuredObjectSpaceProvider((SecurityStrategyComplex)Security, XPObjectSpaceProvider.GetDataStoreProvider(args.ConnectionString, args.Connection, false), false));
             args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
         }
         private void RuntimeDbChooserWindowsFormsApplication_CustomizeLanguagesList(object sender, CustomizeLanguagesListEventArgs e) {
@@ -43,15 +56,18 @@ namespace RuntimeDbChooser.Win {
             if(System.Diagnostics.Debugger.IsAttached) {
                 e.Updater.Update();
                 e.Handled = true;
-            } else {
-                throw new InvalidOperationException(
-                    "The application cannot connect to the specified database, because the latter doesn't exist or its version is older than that of the application.\r\n" +
-                    "This error occurred  because the automatic database update was disabled when the application was started without debugging.\r\n" +
-                    "To avoid this error, you should either start the application under Visual Studio in debug mode, or modify the " +
-                    "source code of the 'DatabaseVersionMismatch' event handler to enable automatic database update, " +
-                    "or manually create a database using the 'DBUpdater' tool.\r\n" +
-                    "Anyway, refer to the 'Update Application and Database Versions' help topic at http://help.devexpress.com/#Xaf/CustomDocument2795 " +
-                    "for more detailed information. If this doesn't help, please contact our Support Team at http://www.devexpress.com/Support/Center/");
+            }
+            else {
+				string message = "The application cannot connect to the specified database, " +
+					"because the database doesn't exist, its version is older " +
+					"than that of the application or its schema does not match " +
+					"the ORM data model structure. To avoid this error, use one " +
+					"of the solutions from the https://www.devexpress.com/kb=T367835 KB Article.";
+
+				if(e.CompatibilityError != null && e.CompatibilityError.Exception != null) {
+					message += "\r\n\r\nInner exception: " + e.CompatibilityError.Exception.Message;
+				}
+				throw new InvalidOperationException(message);
             }
 #endif
         }

@@ -1,155 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}</ProjectGuid>
+    <ProjectGuid>{8EFF6C61-263A-4B46-8A58-FC9968F2C995}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace>RuntimeDbChooser.Module.Win</RootNamespace>
     <AssemblyName>RuntimeDbChooser.Module.Win</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <OptionExplicit>On</OptionExplicit>
-    <OptionCompare>Binary</OptionCompare>
-    <OptionStrict>Off</OptionStrict>
-    <OptionInfer>On</OptionInfer>
+    <MyType>Windows</MyType>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <ErrorReport>prompt</ErrorReport>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>$solutionname$.Module.Win.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <ErrorReport>prompt</ErrorReport>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>$solutionname$.Module.Win.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\EasyTest\</OutputPath>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <DefineConstants>EASYTEST=True</DefineConstants>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DocumentationFile>$solutionname$.Module.Win.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>EASYTEST</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Import Include="Microsoft.VisualBasic" />
-    <Import Include="System.Collections.Generic" />
-    <Import Include="System.Collections" />
-    <Import Include="System.Diagnostics" />
-    <Import Include="System.Linq" />
-    <Import Include="System.Data" />
-    <Import Include="System.Drawing" />
-    <Import Include="System.Windows.Forms" />
-    <Import Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.Security.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Security.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Validation.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.Win.v20.1, Version=20.1.10.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Utils.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Pdf.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.Pdf.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Office.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.Office.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.RichEdit.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.RichEdit.v20.2.Export">
+      
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v20.1.Export">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Printing.v20.2.Core">
+      
     </Reference>
-    <Reference Include="DevExpress.Printing.v20.1.Core">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Data.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Data.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.ExpressApp.Win.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Persistent.Base.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Win.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Xpo.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Data.Desktop.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.Xpo.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.Utils.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraGrid.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraEditors.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraLayout.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraNavBar.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v20.1">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="DevExpress.XtraBars.v20.2">
+      
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v20.1">
+    <Reference Include="DevExpress.XtraPrinting.v20.2">
+      
+    </Reference>
+    <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System">
-      <Name>System</Name>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.configuration">
@@ -173,32 +165,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WinChangeDatabaseController.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WinCustomAuthentication.vb">
-      <SubType>Component</SubType>
-    </Compile>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="WinModule.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="WinModule.Designer.vb">
       <DependentUpon>WinModule.vb</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
-    <EmbeddedResource Include="WinModule.resx">
-      <DependentUpon>WinModule.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.vbproj">
-      <Project>{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}</Project>
-      <Name>RuntimeDbChooser.Module</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Images\ExpressAppLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\ReadMe.txt" />
@@ -208,27 +195,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+    <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.vbproj">
+      <Project>{2778636d-909a-41da-9ad7-1d22ea25f0be}</Project>
+      <Name>RuntimeDbChooser.Module</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
