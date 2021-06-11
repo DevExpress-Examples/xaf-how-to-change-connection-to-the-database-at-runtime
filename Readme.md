@@ -15,7 +15,9 @@
 * [WebApplicationEx.cs](./CS/RuntimeDbChooser.Web/WebApplicationEx.cs) (VB: [WebApplicationEx.vb](./VB/RuntimeDbChooser.Web/WebApplicationEx.vb))
 
 ### Blazor Server
-* [Startup.cs](./CS/RuntimeDbChooser.Blazor.Server/Startup.cs) and [BlazorApplication.cs](./CS/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs).
+* [Startup.cs](./CS/RuntimeDbChooser.Blazor.Server/Startup.cs)
+* [BlazorApplication.cs](./CS/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs)
+* [XpoDataStoreProviderAccessor\.cs](./CS/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs)
 
 <!-- default file list end -->
 
