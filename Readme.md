@@ -11,7 +11,7 @@
 * [WebApplicationEx.cs](./CS/RuntimeDbChooser.Web/WebApplicationEx.cs) (VB: [WebApplicationEx.vb](./VB/RuntimeDbChooser.Web/WebApplicationEx.vb))
 * [Program.cs](./CS/RuntimeDbChooser.Win/Program.cs) (VB: [Program.vb](./VB/RuntimeDbChooser.Win/Program.vb))
 * [WinApplicationEx.cs](./CS/RuntimeDbChooser.Win/WinApplicationEx.cs) (VB: [WinApplicationEx.vb](./VB/RuntimeDbChooser.Win/WinApplicationEx.vb))
-* Blazor Server: please refer to https://github.com/jjcolumb/XAF-blazor-change-connection-to-the-database-at-runtime or watch https://youtu.be/o5t3Nb4zP7A (created by DevExpress MVPs Jose Columbie and Joche Ojeda).
+* Blazor Server: please refer to https://github.com/jjcolumb/XAF-blazor-change-connection-to-the-database-at-runtime or watch https://www.youtube.com/watch?v=o5t3Nb4zP7A (created by DevExpress MVPs Jose Columbie and Joche Ojeda).
 <!-- default file list end -->
 
 # How to change connection to the database at runtime
