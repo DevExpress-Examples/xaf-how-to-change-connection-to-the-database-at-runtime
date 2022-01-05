@@ -12,12 +12,12 @@
 
 ### WinForms
 * [Program.cs](./CS/RuntimeDbChooser.Win/Program.cs) (VB: [Program.vb](./VB/RuntimeDbChooser.Win/Program.vb))
-* [WinApplicationEx.cs](./CS/RuntimeDbChooser.Win/WinApplicationEx.cs) (VB: [WinApplicationEx.vb](./VB/RuntimeDbChooser.Win/WinApplicationEx.vb))
+* [WinApplication.cs](./CS/RuntimeDbChooser.Win/WinApplication.cs) (VB: [WinApplication.vb](./VB/RuntimeDbChooser.Win/WinApplication.vb))
 
 ### ASP.NET WebForms
 * [WebChangeDatabaseController.cs](./CS/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.cs) (VB: [WebChangeDatabaseController.vb](./VB/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.vb))
-* [WebApplication.cs](./CS/RuntimeDbChooser.Web/WebApplication.cs) (VB: [WebApplicationEx.vb](./VB/RuntimeDbChooser.Web/WebApplicationEx.vb))
-* [WebApplicationEx.cs](./CS/RuntimeDbChooser.Web/WebApplicationEx.cs) (VB: [WebApplicationEx.vb](./VB/RuntimeDbChooser.Web/WebApplicationEx.vb))
+* [WebApplication.cs](./CS/RuntimeDbChooser.Web/WebApplication.cs) (VB: [WebApplication.vb](./VB/RuntimeDbChooser.Web/WebApplication.vb))
+
 
 ### Blazor Server
 * [Startup.cs](./CS/RuntimeDbChooser.Blazor.Server/Startup.cs)
