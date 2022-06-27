@@ -7,22 +7,26 @@
 *Files to look at*:
 
 ### Common
-* [Updater.cs](./CS/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (VB: [Updater.vb](./VB/RuntimeDbChooser.Module/DatabaseUpdate/Updater.vb))
-* [CustomLogonParameters.cs](./CS/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (VB: [CustomLogonParameters.vb](./VB/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.vb))
+* [Updater.cs](./CS/XPO/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (EFCore: [Updater.cs](./CS/EFCore/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs))
+* [CustomLogonParameters.cs](./CS/XPO/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (EFCore: [CustomLogonParameters.cs](./CS/EFCore/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs))
 
 ### WinForms
-* [Program.cs](./CS/RuntimeDbChooser.Win/Program.cs) (VB: [Program.vb](./VB/RuntimeDbChooser.Win/Program.vb))
-* [WinApplication.cs](./CS/RuntimeDbChooser.Win/WinApplication.cs) (VB: [WinApplication.vb](./VB/RuntimeDbChooser.Win/WinApplication.vb))
+* [Program.cs](./CS/XPO/RuntimeDbChooser.Win/Program.cs)
+* [WinApplication.cs](./CS/XPO/RuntimeDbChooser.Win/WinApplication.cs)
+* [CustomLogonController.cs](./CS/XPO/RuntimeDbChooser.Win/Controllers/CustomLogonController.cs)
 
 ### ASP.NET WebForms
-* [WebChangeDatabaseController.cs](./CS/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.cs) (VB: [WebChangeDatabaseController.vb](./VB/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.vb))
-* [WebApplication.cs](./CS/RuntimeDbChooser.Web/WebApplication.cs) (VB: [WebApplication.vb](./VB/RuntimeDbChooser.Web/WebApplication.vb))
+* [WebChangeDatabaseController.cs](./CS/XPO/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.cs)
+* [WebApplication.cs](./CS/XPO/RuntimeDbChooser.Web/WebApplication.cs)
+* [CustomLogonController.cs](./CS/XPO/RuntimeDbChooser.Web/Controllers/CustomLogonController.cs)
 
 
 ### Blazor Server
-* [Startup.cs](./CS/RuntimeDbChooser.Blazor.Server/Startup.cs)
-* [BlazorApplication.cs](./CS/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs)
-* [XpoDataStoreProviderAccessor\.cs](./CS/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs)
+* [Startup.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/Startup.cs) (XPO: [Startup.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/Startup.cs))
+* [BlazorApplication.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
+* [XpoDataStoreProviderAccessor\.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs) (XPO: [XpoDataStoreProviderAccessor.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs))
+* [ConnectionStringProvider\.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
+* [DbContext\.cs](./CS/EFCore/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs)
 
 <!-- default file list end -->
 
@@ -35,14 +39,15 @@ This example illustrates how to connect your application to another database a
 ![](https://raw.githubusercontent.com/DevExpress-Examples/XAF_how-to-change-connection-to-the-database-at-runtime-e1344/20.2.5%2B/media/e1344Blazor.png)
   
 ## Implementation Steps
-1. Using the Solution Wizard, create a new XAF app named *RuntimeDbChooser* and that uses XPO for data access and the Security module with the *Authentication = Standard* and *Integrated Mode* options.
+1. Using the Solution Wizard, create a new XAF app named *RuntimeDbChooser* and that uses XPO or EFCore for data access and the Security module with the *Authentication = Standard* and *Integrated Mode* options.
 2. Copy code that creates predefined security users for each database from the *RuntimeDbChooser.Module\DatabaseUpdate\Updater.xx* file into *YourSolutionName.Module/DatabaseUpdate/Updater.xx*.
 3. Copy and include the *RuntimeDbChooser.Module\BusinessObjects\CustomLogonParameters.xx* file into the *YourSolutionName.Module/BusinessObjects* folder.
-4. Copy and include the *RuntimeDbChooser.Module\ChangeDatabaseActiveDirectoryAuthentication.xx* file into the *YourSolutionName.Module* project. For more information on this API, see [How to: Use Custom Logon Parameters and Authentication](https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112982.aspx).
+4. For WinForms application only. Copy and include the *RuntimeDbChooser.Module\ChangeDatabaseActiveDirectoryAuthentication.xx* file into the *YourSolutionName.Module* project. For more information on this API, see [How to: Use Custom Logon Parameters and Authentication](https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112982.aspx).
 5. Copy and include the *RuntimeDbChooser.Wxx\WxxApplicationEx.xx* files into the *YourSolutionName.Wxx* project. Rename `RuntimeDbChooserWindowsFormsApplication` or `RuntimeDbChooserAspNetApplication` or `RuntimeDbChooserBlazorApplication` to your `WxxApplication` descendant's name from the *WxxApplication.xx* file.
 6. Replace the line that instantiates your `WinApplication` descendant in the *YourSolutionName.Win/Program.xx* file with the `CreateApplication` method call as shown in the *RuntimeDbChooser.Win/Program.xx* file.
 7. In the Application Designer invoked for the *YourSolutionName.Web/WebApplication.xx* file, select the *Authentication Standard* component and set its `LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
-8. Replace the line that instantiates your `BlazorApplication` in the *YourSolutionName.Blazor.Server/Startup.cs* file and set the `AddAuthenticationStandard.Options.LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
+8. Replace the line that instantiates your `BlazorApplication` in the *YourSolutionName.Blazor.Server/Startup.cs* file and set the `AddPasswordAuthentication.Options.LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
+9. Copy and include the CustomLogonController.cs file into the application project and register that controller in the Application.CreateLogonController method override. For WinForms and ASP.NET WebForms the controller has one implementation and another for Blazor Server application.
 
 
 ## Important Notes
@@ -52,3 +57,7 @@ This example illustrates how to connect your application to another database a
   - customize logon parameters in the `XafApplication.LoggingOn` event handler ([example](https://supportcenter.devexpress.com/ticket/details/t1002457/dynamic-database-name-xaf-blazor)).
 2. This `XafApplication.ConnectionString`-based implementation is designed for a simple scenario when no user and password information is stored in the connection string. Otherwise, the sensitive password information is automatically removed by XAF code from the `XafApplication.ConnectionString` and you cannot rely on this API. In such scenarios, we recommend you remember the original connection string information in the `CreateDefaultObjectSpaceProvider` method of your `XafApplication` descendant (see inside the *YourSolutionName.Wxx/WxxApplication.xx* file) as demonstrated in [the E2829 example](https://supportcenter.devexpress.com/ticket/details/e2829#).
 3. You can find alternative solutions at https://youtu.be/o5t3Nb4zP7A (created by DevExpress MVPs Jose Columbie and Joche Ojeda).
+
+## How it works
+
+The main idea is that when the connection string is selected, all ObjectSpaceProviders from the IObjectSpaceProviderContainer container are removed and an application needs to recreate them again with a new connection string. It's required only for XAF Applications because Web API Service creates new ObjectSpaceProviders per request. You can set a required connection string in the IObjectSpaceProviderFactory service. Or use the approach with the XAF application builder for XPO or set it in the DbContext.OnConfiguring method for EFCore.
