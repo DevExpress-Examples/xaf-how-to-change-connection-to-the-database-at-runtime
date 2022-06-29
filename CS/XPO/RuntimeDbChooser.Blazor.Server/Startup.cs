@@ -16,6 +16,7 @@ using RuntimeDbChooser.Blazor.Server.Services;
 using RuntimeDbChooser.Module;
 using RuntimeDbChooser.Module.Blazor;
 using RuntimeDbChooser.Module.BusinessObjects;
+using RuntimeDbChooser.Module.NetStandard;
 
 namespace RuntimeDbChooser.Blazor.Server {
     public class Startup {
@@ -87,6 +88,8 @@ namespace RuntimeDbChooser.Blazor.Server {
                         .RequireXafAuthentication()
                         .Build();
             });
+
+            services.AddSingleton<ConnectionStringHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -49,7 +49,7 @@ public class DemoDbContext : DbContext {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
         //Configure the connection string based on logon parameter values.
-        if(connectionStringProvider != null && !optionsBuilder.IsConfigured) {
+        if(!optionsBuilder.IsConfigured) {
             string connectionString = connectionStringProvider.GetConnectionString();
             optionsBuilder.UseSqlServer(connectionString);
         }

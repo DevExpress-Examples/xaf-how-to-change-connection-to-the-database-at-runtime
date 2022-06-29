@@ -22,9 +22,9 @@
     <Compile Include="BusinessObjects\ApplicationUser.cs" />
     <Compile Include="BusinessObjects\ApplicationUserLoginInfo.cs" />
     <Compile Include="BusinessObjects\CustomLogonParameters.cs" />
-    <Compile Include="BusinessObjects\MSSqlServerChangeDatabaseHelper.cs" />
     <Compile Include="ChangeDatabaseActiveDirectoryAuthentication.cs" />
     <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="ConnectionStringHelper.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Module.Designer.cs">
       <DependentUpon>Module.cs</DependentUpon>
@@ -59,6 +59,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+	  <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="DevExpress.ExpressApp" Version="22.1.3" />

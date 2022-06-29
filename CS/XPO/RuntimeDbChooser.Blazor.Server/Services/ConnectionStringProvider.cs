@@ -1,31 +1,28 @@
 ﻿using DevExpress.ExpressApp.Security;
 using Microsoft.Extensions.Configuration;
 using RuntimeDbChooser.Module.BusinessObjects;
+using RuntimeDbChooser.Module.NetStandard;
+using System.Linq;
 
 namespace RuntimeDbChooser.Blazor.Server.Services;
 public class ConnectionStringProvider {
     readonly IConfiguration configuration;
     readonly ILogonParameterProvider logonParameterProvider;
+    readonly ConnectionStringHelper connectionStringHelper;
 
-    public ConnectionStringProvider(IConfiguration configuration, ILogonParameterProvider logonParameterProvider) {
+    public ConnectionStringProvider(IConfiguration configuration, ILogonParameterProvider logonParameterProvider, ConnectionStringHelper connectionStringHelper) {
         this.configuration = configuration;
         this.logonParameterProvider = logonParameterProvider;
+        this.connectionStringHelper = connectionStringHelper;
     }
 
     public string GetConnectionString() {
-        string? connectionString = null;
-        if(configuration.GetConnectionString("ConnectionString") != null) {
-            connectionString = configuration.GetConnectionString("ConnectionString");
-        }
-#if EASYTEST
-        if(configuration.GetConnectionString("EasyTestConnectionString") != null) {
-            connectionString = configuration.GetConnectionString("EasyTestConnectionString");
-        }
-#endif
         //Configure the connection string based on logon parameter values.
-        string targetDataBaseName = logonParameterProvider.GetLogonParameters<IDatabaseNameParameter>().DatabaseName;
-        var result = MSSqlServerChangeDatabaseHelper.PatchConnectionString(targetDataBaseName, connectionString);
-        return result;
+        string? targetDataBaseName = logonParameterProvider.GetLogonParameters<IDatabaseNameParameter>().DatabaseName?.Name;
+        if(targetDataBaseName != null) {
+            return connectionStringHelper.GetConnectionStringsMap()[targetDataBaseName];
+        }
+        return connectionStringHelper.GetConnectionStringsMap().Values.First();
     }
 }
 
