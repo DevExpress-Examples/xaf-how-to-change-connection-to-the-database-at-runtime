@@ -7,26 +7,26 @@
 *Files to look at*:
 
 ### Common
-* [Updater.cs](./CS/XPO/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (EFCore: [Updater.cs](./CS/EFCore/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs))
-* [CustomLogonParameters.cs](./CS/XPO/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (EFCore: [CustomLogonParameters.cs](./CS/EFCore/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs))
+* [Updater.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (EFCore: [Updater.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs))
+* [CustomLogonParameters.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (EFCore: [CustomLogonParameters.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs))
 
 ### WinForms
-* [Program.cs](./CS/XPO/RuntimeDbChooser.Win/Program.cs)
-* [WinApplication.cs](./CS/XPO/RuntimeDbChooser.Win/WinApplication.cs)
-* [CustomLogonController.cs](./CS/XPO/RuntimeDbChooser.Win/Controllers/CustomLogonController.cs)
+* [Program.cs](./CS/XPO/NET%20Framework/ET_Framework/RuntimeDbChooser.Win/Program.cs)
+* [WinApplication.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Win/WinApplication.cs)
+* [CustomLogonController.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Win/Controllers/CustomLogonController.cs)
 
 ### ASP.NET WebForms
-* [WebChangeDatabaseController.cs](./CS/XPO/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.cs)
-* [WebApplication.cs](./CS/XPO/RuntimeDbChooser.Web/WebApplication.cs)
-* [CustomLogonController.cs](./CS/XPO/RuntimeDbChooser.Web/Controllers/CustomLogonController.cs)
+* [WebApplication.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Web/WebApplication.cs)
+* [CustomLogonController.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Web/Controllers/CustomLogonController.cs)
 
 
 ### Blazor Server
-* [Startup.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/Startup.cs) (XPO: [Startup.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/Startup.cs))
-* [BlazorApplication.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
-* [XpoDataStoreProviderAccessor\.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs) (XPO: [XpoDataStoreProviderAccessor.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs))
-* [ConnectionStringProvider\.cs](./CS/EFCore/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
-* [DbContext\.cs](./CS/EFCore/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs)
+* [Startup.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs) (XPO: [Startup.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs))
+* [BlazorApplication.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
+* [XpoDataStoreProviderAccessor\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs) (XPO: [XpoDataStoreProviderAccessor.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs))
+* [ConnectionStringProvider\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
+* [ConnectionStringHelper\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
+* [DbContext\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs)
 
 <!-- default file list end -->
 
@@ -52,11 +52,12 @@ This example illustrates how to connect your application to another database a
 
 ## Important Notes
 
-1. In this example, the available database names are hard-coded in the `MSSqlServerChangeDatabaseHelper` class and supplied to the `DatabaseName`  property editor using the [PredefinedValues](https://documentation.devexpress.com/#eXpressAppFramework/DevExpressExpressAppModelIModelCommonMemberViewItem_PredefinedValuestopic) model option. To populate this list with database names that will be known only at runtime (for instance, read from a configuration file or a database), consider the following options:
+1. In this example, the available database names are loaded from appsettings.json file for XAF Blazor application
+2. For WinForms and ASP.NET WebForms database names are hard-coded in the `MSSqlServerChangeDatabaseHelper` class and supplied to the `DatabaseName`  property editor using the [PredefinedValues](https://documentation.devexpress.com/#eXpressAppFramework/DevExpressExpressAppModelIModelCommonMemberViewItem_PredefinedValuestopic) model option. To populate this list with database names that will be known only at runtime (for instance, read from a configuration file or a database), consider the following options:
   - implement custom property editors and assign them to the `DatabaseName` property using the [Model Editor](https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112582): [How to: Supply Predefined Values for the String Property Editor Dynamically](https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument113101).
   - customize logon parameters in the `XafApplication.LoggingOn` event handler ([example](https://supportcenter.devexpress.com/ticket/details/t1002457/dynamic-database-name-xaf-blazor)).
-2. This `XafApplication.ConnectionString`-based implementation is designed for a simple scenario when no user and password information is stored in the connection string. Otherwise, the sensitive password information is automatically removed by XAF code from the `XafApplication.ConnectionString` and you cannot rely on this API. In such scenarios, we recommend you remember the original connection string information in the `CreateDefaultObjectSpaceProvider` method of your `XafApplication` descendant (see inside the *YourSolutionName.Wxx/WxxApplication.xx* file) as demonstrated in [the E2829 example](https://supportcenter.devexpress.com/ticket/details/e2829#).
-3. You can find alternative solutions at https://youtu.be/o5t3Nb4zP7A (created by DevExpress MVPs Jose Columbie and Joche Ojeda).
+2. For WinForms and ASP.NET WebForms this `XafApplication.ConnectionString`-based implementation is designed for a simple scenario when no user and password information is stored in the connection string. Otherwise, the sensitive password information is automatically removed by XAF code from the `XafApplication.ConnectionString` and you cannot rely on this API. In such scenarios, we recommend you remember the original connection string information in the `CreateDefaultObjectSpaceProvider` method of your `XafApplication` descendant (see inside the *YourSolutionName.Wxx/WxxApplication.xx* file) as demonstrated in [the E2829 example](https://supportcenter.devexpress.com/ticket/details/e2829#).
+3. For WinForms and ASP.NET WebForms you can find alternative solutions at https://youtu.be/o5t3Nb4zP7A (created by DevExpress MVPs Jose Columbie and Joche Ojeda).
 
 ## How it works
 
