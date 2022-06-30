@@ -52,3 +52,8 @@ This example illustrates how to connect your application to another database a
   - customize logon parameters in the `XafApplication.LoggingOn` event handler ([example](https://supportcenter.devexpress.com/ticket/details/t1002457/dynamic-database-name-xaf-blazor)).
 2. This `XafApplication.ConnectionString`-based implementation is designed for a simple scenario when no user and password information is stored in the connection string. Otherwise, the sensitive password information is automatically removed by XAF code from the `XafApplication.ConnectionString` and you cannot rely on this API. In such scenarios, we recommend you remember the original connection string information in the `CreateDefaultObjectSpaceProvider` method of your `XafApplication` descendant (see inside the *YourSolutionName.Wxx/WxxApplication.xx* file) as demonstrated in [the E2829 example](https://supportcenter.devexpress.com/ticket/details/e2829#).
 3. You can find alternative solutions at https://youtu.be/o5t3Nb4zP7A (created by DevExpress MVPs Jose Columbie and Joche Ojeda).
+
+## See Also
+
+You may find a free eXpand's module helpful: https://github.com/eXpandFramework/Reactive.XAF/blob/master/src/Modules/TenantManager/. The TenantManager integrates cloud authentication with dedicated datastore Organizations over a certainly controlled management.
+![image](https://user-images.githubusercontent.com/5479762/176624703-df131f5d-f773-42be-99f3-6585437028c1.png)
