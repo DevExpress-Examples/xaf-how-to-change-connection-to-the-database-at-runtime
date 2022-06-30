@@ -6,28 +6,6 @@
 
 # How to change connection to the database at runtime from the logon form
 
-<!-- default file list -->
-*Files to look at*
-### Common
-* [Updater.cs](./CS/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (VB: [Updater.vb](./VB/RuntimeDbChooser.Module/DatabaseUpdate/Updater.vb))
-* [CustomLogonParameters.cs](./CS/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (VB: [CustomLogonParameters.vb](./VB/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.vb))
-
-### WinForms
-* [Program.cs](./CS/RuntimeDbChooser.Win/Program.cs) (VB: [Program.vb](./VB/RuntimeDbChooser.Win/Program.vb))
-* [WinApplication.cs](./CS/RuntimeDbChooser.Win/WinApplication.cs) (VB: [WinApplication.vb](./VB/RuntimeDbChooser.Win/WinApplication.vb))
-
-### ASP.NET WebForms
-* [WebChangeDatabaseController.cs](./CS/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.cs) (VB: [WebChangeDatabaseController.vb](./VB/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.vb))
-* [WebApplication.cs](./CS/RuntimeDbChooser.Web/WebApplication.cs) (VB: [WebApplication.vb](./VB/RuntimeDbChooser.Web/WebApplication.vb))
-
-
-### Blazor Server
-* [Startup.cs](./CS/RuntimeDbChooser.Blazor.Server/Startup.cs)
-* [BlazorApplication.cs](./CS/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs)
-* [XpoDataStoreProviderAccessor\.cs](./CS/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs)
-
-<!-- default file list end -->
-
 ## Scenario
 This example illustrates how to connect your application to another database after the application is already started. This can be required for a multi-tenant application where you need to associate a user or company with their own database of the same structure. You can choose a required database and user during the login procedure. The created databases will have the same structure, but can have a different predefined data set.
 
@@ -43,6 +21,28 @@ This example illustrates how to connect your application to another database a
 7. In the Application Designer invoked for the *YourSolutionName.Web/WebApplication.xx* file, select the *Authentication Standard* component and set its `LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
 8. Replace the line that instantiates your `BlazorApplication` in the *YourSolutionName.Blazor.Server/Startup.cs* file and set the `AddAuthenticationStandard.Options.LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
 
+<!-- default file list -->
+*Files to look at:*
+
+**Common**
+* [Updater.cs](./CS/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (VB: [Updater.vb](./VB/RuntimeDbChooser.Module/DatabaseUpdate/Updater.vb))
+* [CustomLogonParameters.cs](./CS/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (VB: [CustomLogonParameters.vb](./VB/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.vb))
+
+**WinForms**
+* [Program.cs](./CS/RuntimeDbChooser.Win/Program.cs) (VB: [Program.vb](./VB/RuntimeDbChooser.Win/Program.vb))
+* [WinApplication.cs](./CS/RuntimeDbChooser.Win/WinApplication.cs) (VB: [WinApplication.vb](./VB/RuntimeDbChooser.Win/WinApplication.vb))
+
+**ASP.NET WebForms**
+* [WebChangeDatabaseController.cs](./CS/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.cs) (VB: [WebChangeDatabaseController.vb](./VB/RuntimeDbChooser.Module/ChangeDatabaseActiveDirectoryAuthentication.vb))
+* [WebApplication.cs](./CS/RuntimeDbChooser.Web/WebApplication.cs) (VB: [WebApplication.vb](./VB/RuntimeDbChooser.Web/WebApplication.vb))
+
+
+**Blazor Server**
+* [Startup.cs](./CS/RuntimeDbChooser.Blazor.Server/Startup.cs)
+* [BlazorApplication.cs](./CS/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs)
+* [XpoDataStoreProviderAccessor\.cs](./CS/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs)
+
+<!-- default file list end -->
 
 ## Important Notes
 
