@@ -3,9 +3,11 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E1344)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
+
 # How to change connection to the database at runtime from the logon form
 
+<!-- default file list -->
+*Files to look at*
 ### Common
 * [Updater.cs](./CS/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (VB: [Updater.vb](./VB/RuntimeDbChooser.Module/DatabaseUpdate/Updater.vb))
 * [CustomLogonParameters.cs](./CS/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (VB: [CustomLogonParameters.vb](./VB/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.vb))
@@ -25,9 +27,6 @@
 * [XpoDataStoreProviderAccessor\.cs](./CS/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs)
 
 <!-- default file list end -->
-
-# How to change connection to the database at runtime from the logon form
-
 
 ## Scenario
 This example illustrates how to connect your application to another database after the application is already started. This can be required for a multi-tenant application where you need to associate a user or company with their own database of the same structure. You can choose a required database and user during the login procedure. The created databases will have the same structure, but can have a different predefined data set.
