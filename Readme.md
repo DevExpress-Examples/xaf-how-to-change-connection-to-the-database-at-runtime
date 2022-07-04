@@ -7,26 +7,26 @@
 *Files to look at*:
 
 ### Common
-* [Updater.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (EFCore: [Updater.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs))
-* [CustomLogonParameters.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (EFCore: [CustomLogonParameters.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs))
+* [Updater.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (EFCore: [Updater.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs))
+* [CustomLogonParameters.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (EFCore: [CustomLogonParameters.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs))
 
 ### WinForms
-* [Program.cs](./CS/XPO/NET%20Framework/ET_Framework/RuntimeDbChooser.Win/Program.cs)
-* [WinApplication.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Win/WinApplication.cs)
-* [CustomLogonController.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Win/Controllers/CustomLogonController.cs)
+* [Program.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Win/Program.cs)
+* [WinApplication.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Win/WinApplication.cs)
+* [CustomLogonController.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Win/Controllers/CustomLogonController.cs)
 
 ### ASP.NET WebForms
-* [WebApplication.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Web/WebApplication.cs)
-* [CustomLogonController.cs](./CS/XPO/NET%20Framework/RuntimeDbChooser.Web/Controllers/CustomLogonController.cs)
+* [WebApplication.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Web/WebApplication.cs)
+* [CustomLogonController.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Web/Controllers/CustomLogonController.cs)
 
 
 ### Blazor Server
-* [Startup.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs) (XPO: [Startup.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs))
-* [BlazorApplication.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
-* [XpoDataStoreProviderAccessor\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs) (XPO: [XpoDataStoreProviderAccessor.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs))
-* [ConnectionStringProvider\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
-* [ConnectionStringHelper\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NET%20Core/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
-* [DbContext\.cs](./CS/EFCore/ASP.NET%20Core/Blazor/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs)
+* [Startup.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs) (XPO: [Startup.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs))
+* [BlazorApplication.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
+* [XpoDataStoreProviderAccessor\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs) (XPO: [XpoDataStoreProviderAccessor.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs))
+* [ConnectionStringProvider\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
+* [ConnectionStringHelper\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
+* [DbContext\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs)
 
 <!-- default file list end -->
 
