@@ -1,8 +1,11 @@
-﻿<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="RuntimeDbChooser">
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="22.1.3.0" IsNewNode="True" />
+  </SchemaModules>
   <Views>
     <DetailView Id="CustomLogonParametersForStandardAuthentication_DetailView">
       <Items>
@@ -13,11 +16,12 @@
           <LayoutGroup Id="SimpleEditors">
             <LayoutGroup Id="CustomLogonParametersForStandardAuthentication" Caption="Database Name">
               <LayoutItem Id="LogonText" ViewItem="LogonText" Index="0" IsNewNode="True" />
-              <LayoutItem Id="DatabaseName" Index="1" />
+              <LayoutItem Id="DatabaseName" Index="1" ViewItem="DatabaseName" />
             </LayoutGroup>
           </LayoutGroup>
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="DataBaseNameHolder_DetailView" AllowEdit="False" />
   </Views>
 </Application>

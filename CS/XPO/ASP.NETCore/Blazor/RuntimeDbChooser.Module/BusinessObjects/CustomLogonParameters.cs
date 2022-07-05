@@ -47,10 +47,13 @@ public class CustomLogonParametersForStandardAuthentication : AuthenticationStan
 }
 
 [DomainComponent]
+//set readonly using model editor
+//<DetailView Id = "DataBaseNameHolder_DetailView" AllowEdit="False" />
+//CustomLogonController checks that the DataBaseNameHolder property is not null
 public class DataBaseNameHolder : NonPersistentLiteObject {
     public DataBaseNameHolder(string name) {
         Name = name;
     }
-    public string Name { get; set; }
+    public string Name { get; }
 }
 

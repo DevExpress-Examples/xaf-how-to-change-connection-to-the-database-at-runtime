@@ -19,5 +19,6 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+	  <DetailView Id="DataBaseNameHolder_DetailView" AllowEdit="False" />
   </Views>
 </Application>
