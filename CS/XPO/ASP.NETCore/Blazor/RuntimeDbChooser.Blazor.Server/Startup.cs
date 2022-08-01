@@ -33,7 +33,7 @@ namespace RuntimeDbChooser.Blazor.Server {
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpContextAccessor();
-            services.AddSingleton<XpoDataStoreProviderAccessor>();
+            //services.AddSingleton<XpoDataStoreProviderAccessor>();
             services.AddScoped<CircuitHandler, CircuitHandlerProxy>();
 
             services.AddXaf(Configuration, builder => {
