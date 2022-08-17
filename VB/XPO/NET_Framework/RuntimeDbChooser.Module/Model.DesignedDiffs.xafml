@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" ?>
+<Application Title="RuntimeDbChooser">
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <Views>
+    <DetailView Id="CustomLogonParametersForStandardAuthentication_DetailView">
+      <Items>
+        <StaticText Id="LogonText" Text="Welcome! Please enter your user name and password below. Consider the following test logins:&#xD;&#xA;- User1 or User2 for the DB1 and DB2 databases respectively; &#xD;&#xA;- Admin for all databases.&#xD;&#xA;All test users have empty passwords by default." IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="CustomLogonParametersForStandardAuthentication" Caption="Database Name">
+              <LayoutItem Id="LogonText" ViewItem="LogonText" Index="0" IsNewNode="True" />
+              <LayoutItem Id="DatabaseName" Index="1" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>
