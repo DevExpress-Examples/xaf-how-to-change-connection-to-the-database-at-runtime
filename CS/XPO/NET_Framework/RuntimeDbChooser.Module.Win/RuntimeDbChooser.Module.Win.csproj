@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9193A02F-EEFE-472C-9DD9-364626DBFB01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RuntimeDbChooser.Module.Win</RootNamespace>
+    <AssemblyName>RuntimeDbChooser.Module.Win</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'EasyTest|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\EasyTest\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;EASYTEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.ExpressApp.Security.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v22.1.Core">
+    </Reference>
+    <Reference Include="DevExpress.Office.v22.1.Core">
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v22.1.Core">
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v22.1.Export">
+    </Reference>
+    <Reference Include="DevExpress.Printing.v22.1.Core">
+    </Reference>
+    <Reference Include="DevExpress.Data.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.Data.Desktop.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.Utils.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v22.1">
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v22.1">
+    </Reference>
+    <Reference Include="mscorlib">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Core">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinModule.Designer.cs">
+      <DependentUpon>WinModule.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\ExpressAppLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Controllers\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Editors\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.csproj">
+      <Project>{B6E595D4-13A3-47F3-ABB8-185A7762D10F}</Project>
+      <Name>RuntimeDbChooser.Module</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
