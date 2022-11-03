@@ -22,13 +22,13 @@ This example illustrates how to connect your application to a different databa
 
 3. Copy and include the _RuntimeDbChooser.Module\BusinessObjects\CustomLogonParameters.xx_ file into the *YourSolutionName.Module\BusinessObjects* folder.
 
-4. For WinForms application only. Copy and include the _RuntimeDbChooser.Module\ChangeDatabaseActiveDirectoryAuthentication.xx_ file into the *YourSolutionName.Module* project. For more information on this API, see [How to: Use Custom Logon Parameters and Authentication](https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112982.aspx).
+4. For WinForms application only. Copy and include the _RuntimeDbChooser.Module\ChangeDatabaseActiveDirectoryAuthentication.xx_ file into the *YourSolutionName.Module* project. For more information on this API, see the following article: [How to: Use Custom Logon Parameters and Authentication](https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112982.aspx).
 
 5. Copy and include the _RuntimeDbChooser.Wxx\WxxApplicationEx.xx_ files into the _YourSolutionName.Wxx_ project. Rename the `RuntimeDbChooserWindowsFormsApplication`, or `RuntimeDbChooserAspNetApplication`, or `RuntimeDbChooserBlazorApplication` to your `WxxApplication` descendant's name from the _WxxApplication.xx_ file.
 
 6. Replace the line that instantiates your `WinApplication` descendant in the _YourSolutionName.Win/Program.xx_ file with the `CreateApplication` method call as shown in the _RuntimeDbChooser.Win/Program.xx_ file.
 
-7. Open the _YourSolutionName.Web/WebApplication.xx* file in the Application Designer. Select the *Authentication Standard* component and set its `LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
+7. Open the _YourSolutionName.Web/WebApplication.xx_ file in the Application Designer. Select the *Authentication Standard* component and set its `LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
 
 8. Replace the line that instantiates your `BlazorApplication` in the _YourSolutionName.Blazor.Server/Startup.cs_ file and set the `AddPasswordAuthentication.Options.LogonParametersType` property to `RuntimeDbChooser.Module.BusinessObjects.CustomLogonParametersForStandardAuthentication`.
 
