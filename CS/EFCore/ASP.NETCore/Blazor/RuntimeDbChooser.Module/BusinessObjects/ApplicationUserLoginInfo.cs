@@ -6,69 +6,23 @@ using System.Runtime.CompilerServices;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.ConditionalAppearance;
 using DevExpress.ExpressApp.Security;
+using DevExpress.Persistent.BaseImpl.EF;
 
 namespace RuntimeDbChooser.Module.BusinessObjects;
 [Table("PermissionPolicyUserLoginInfo")]
-public class ApplicationUserLoginInfo : IObjectSpaceLink, INotifyPropertyChanged, ISecurityUserLoginInfo {
-    private string loginProviderName;
-    private string providerUserKey;
-    private ApplicationUser user;
-
-    public ApplicationUserLoginInfo() { }
-
-    [Browsable(false)]
-    public Int32 ID { get; protected set; }
+public class ApplicationUserLoginInfo : BaseObject, ISecurityUserLoginInfo {
 
     [Appearance("PasswordProvider", Enabled = false, Criteria = "!(IsNewObject(this)) and LoginProviderName == '" + SecurityDefaults.DefaultClaimsIssuer + "'", Context = "DetailView")]
-    public string LoginProviderName {
-        get { return loginProviderName; }
-        set {
-            if(loginProviderName != value) {
-                loginProviderName = value;
-                OnPropertyChanged();
-            }
-        }
-    }
+    public virtual string LoginProviderName { get; set; }
 
     [Appearance("PasswordProviderUserKey", Enabled = false, Criteria = "!(IsNewObject(this)) and LoginProviderName == '" + SecurityDefaults.DefaultClaimsIssuer + "'", Context = "DetailView")]
-    public string ProviderUserKey {
-        get { return providerUserKey; }
-        set {
-            if(providerUserKey != value) {
-                providerUserKey = value;
-                OnPropertyChanged();
-            }
-        }
-    }
+    public virtual string ProviderUserKey { get; set; }
 
     [Browsable(false)]
-    public Guid UserForeignKey { get; set; }
+    public virtual Guid UserForeignKey { get; set; }
 
     [Required]
     [ForeignKey(nameof(UserForeignKey))]
-    public virtual ApplicationUser User {
-        get { return user; }
-        set {
-            if(!Equals(user, value)) {
-                user = value;
-                OnPropertyChanged();
-            }
-        }
-    }
+    public virtual ApplicationUser User { get; set; }
     object ISecurityUserLoginInfo.User => User;
-
-    #region IObjectSpaceLink members
-    private IObjectSpace objectSpace;
-    IObjectSpace IObjectSpaceLink.ObjectSpace {
-        get { return objectSpace; }
-        set { objectSpace = value; }
-    }
-    #endregion
-
-    #region INotifyPropertyChanged members
-    private void OnPropertyChanged([CallerMemberName] string propertyName = null) {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-    public event PropertyChangedEventHandler PropertyChanged;
-    #endregion
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -12,10 +13,10 @@ using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 namespace RuntimeDbChooser.Module.BusinessObjects;
 [CurrentUserDisplayImage(nameof(Photo))]
 [DefaultProperty(nameof(UserName))]
-public class ApplicationUser : PermissionPolicyUser, IObjectSpaceLink, ISecurityUserWithLoginInfo, IXafEntityObject {
+public class ApplicationUser : PermissionPolicyUser, ISecurityUserWithLoginInfo {
     private MediaDataObject photo;
     public ApplicationUser() : base() {
-        UserLogins = new List<ApplicationUserLoginInfo>();
+        UserLogins = new ObservableCollection<ApplicationUserLoginInfo>();
     }
     #region DEMO_REMOVE
     [JsonConstructor]
@@ -30,9 +31,7 @@ public class ApplicationUser : PermissionPolicyUser, IObjectSpaceLink, ISecurity
 
     [VisibleInListView(false)]
     [ImageEditor(ListViewImageEditorCustomHeight = 75, DetailViewImageEditorFixedHeight = 150)]
-    public virtual MediaDataObject Photo {
-        get;set;
-    }
+    public virtual MediaDataObject Photo { get; set; }
     ISecurityUserLoginInfo ISecurityUserWithLoginInfo.CreateUserLoginInfo(string loginProviderName, string providerUserKey) {
         ApplicationUserLoginInfo result = ((IObjectSpaceLink)this).ObjectSpace.CreateObject<ApplicationUserLoginInfo>();
         result.LoginProviderName = loginProviderName;

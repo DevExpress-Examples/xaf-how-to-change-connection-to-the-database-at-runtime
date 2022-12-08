@@ -55,6 +55,7 @@ namespace RuntimeDbChooser.Blazor.Server {
                         //string connectionString = //...
                         //options.UseSqlServer(connectionString);
                         options.UseLazyLoadingProxies();
+                        options.UseChangeTrackingProxies();
                     })
                     .AddNonPersistent();
                 builder.Security

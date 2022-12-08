@@ -15,7 +15,9 @@ public class DbContextInitializer : DbContextTypesInfoInitializerBase {
     // For details, please refer to https://supportcenter.devexpress.com/ticket/details/t933891.
     protected override DbContext CreateDbContext() {
         var optionsBuilder = new DbContextOptionsBuilder<DemoDbContext>()
-            .UseSqlServer(@";");
+            .UseSqlServer(@";")
+            .UseChangeTrackingProxies()
+            .UseLazyLoadingProxies();
         return new DemoDbContext(optionsBuilder.Options, null);
     }
 }
@@ -25,6 +27,8 @@ public class EFCoreDemoDesignTimeDbContextFactory : IDesignTimeDbContextFactory<
         throw new InvalidOperationException("Make sure that the database connection string and connection provider are correct. After that, uncomment the code below and remove this exception.");
         //var optionsBuilder = new DbContextOptionsBuilder<EFCoreDemoDbContext>();
         //optionsBuilder.UseSqlServer(@"Integrated Security=SSPI;Pooling=false;MultipleActiveResultSets=true;Data Source=(localdb)\\mssqllocaldb;Initial Catalog=EFCoreDemo_v22.1;ConnectRetryCount=0;");
+        //optionsBuilder.UseChangeTrackingProxies();
+        //optionsBuilder.UseLazyLoadingProxies();
         //return new EFCoreDemoDbContext(optionsBuilder.Options);
     }
 }
@@ -38,10 +42,8 @@ public class DemoDbContext : DbContext {
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        //Beresnev: commented out, it looks like strange, and prevents adding MediaDataObject to other classes. I'll leave it that way until the reasons are explained.
-        //modelBuilder.Entity<ApplicationUser>().HasOne(user => user.Photo).WithOne().HasForeignKey<MediaDataObject>(mdo => mdo.Id);
+        modelBuilder.HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangingAndChangedNotificationsWithOriginalValues);
         modelBuilder.Entity<MediaDataObject>().HasOne(md => md.MediaResource).WithOne().HasForeignKey<MediaResourceObject>(p => p.ID);
-
         modelBuilder.Entity<ApplicationUserLoginInfo>(b => {
             b.HasIndex(nameof(ISecurityUserLoginInfo.LoginProviderName), nameof(ISecurityUserLoginInfo.ProviderUserKey)).IsUnique();
         });
@@ -52,6 +54,8 @@ public class DemoDbContext : DbContext {
         if(!optionsBuilder.IsConfigured) {
             string connectionString = connectionStringProvider.GetConnectionString();
             optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseChangeTrackingProxies();
+            optionsBuilder.UseLazyLoadingProxies();
         }
     }
 
