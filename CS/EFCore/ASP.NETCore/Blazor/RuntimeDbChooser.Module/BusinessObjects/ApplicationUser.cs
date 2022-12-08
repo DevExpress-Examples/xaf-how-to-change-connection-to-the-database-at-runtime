@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -18,7 +19,7 @@ public class ApplicationUser : PermissionPolicyUser, IObjectSpaceLink, ISecurity
     }
     #region DEMO_REMOVE
     [JsonConstructor]
-    public ApplicationUser(int ID) : base() {
+    public ApplicationUser(Guid ID) : base() {
         this.ID = ID;
     }
     #endregion
@@ -30,8 +31,7 @@ public class ApplicationUser : PermissionPolicyUser, IObjectSpaceLink, ISecurity
     [VisibleInListView(false)]
     [ImageEditor(ListViewImageEditorCustomHeight = 75, DetailViewImageEditorFixedHeight = 150)]
     public virtual MediaDataObject Photo {
-        get { return photo; }
-        set { SetReferencePropertyValue(ref photo, value); }
+        get;set;
     }
     ISecurityUserLoginInfo ISecurityUserWithLoginInfo.CreateUserLoginInfo(string loginProviderName, string providerUserKey) {
         ApplicationUserLoginInfo result = ((IObjectSpaceLink)this).ObjectSpace.CreateObject<ApplicationUserLoginInfo>();
@@ -41,13 +41,8 @@ public class ApplicationUser : PermissionPolicyUser, IObjectSpaceLink, ISecurity
         return result;
     }
 
-    public void OnCreated() {
+  public override void OnCreated() {
         Photo = ((IObjectSpaceLink)this).ObjectSpace.CreateObject<MediaDataObject>();
     }
 
-    public void OnSaving() {
-    }
-
-    public void OnLoaded() {
-    }
 }

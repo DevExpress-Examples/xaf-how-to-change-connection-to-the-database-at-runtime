@@ -40,7 +40,7 @@ public class DemoDbContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         //Beresnev: commented out, it looks like strange, and prevents adding MediaDataObject to other classes. I'll leave it that way until the reasons are explained.
         //modelBuilder.Entity<ApplicationUser>().HasOne(user => user.Photo).WithOne().HasForeignKey<MediaDataObject>(mdo => mdo.Id);
-        modelBuilder.Entity<MediaDataObject>().HasOne(md => md.MediaResource).WithOne().HasForeignKey<MediaResourceObject>(p => p.Id);
+        modelBuilder.Entity<MediaDataObject>().HasOne(md => md.MediaResource).WithOne().HasForeignKey<MediaResourceObject>(p => p.ID);
 
         modelBuilder.Entity<ApplicationUserLoginInfo>(b => {
             b.HasIndex(nameof(ISecurityUserLoginInfo.LoginProviderName), nameof(ISecurityUserLoginInfo.ProviderUserKey)).IsUnique();

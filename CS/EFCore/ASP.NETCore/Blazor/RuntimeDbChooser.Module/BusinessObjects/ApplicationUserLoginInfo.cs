@@ -42,7 +42,7 @@ public class ApplicationUserLoginInfo : IObjectSpaceLink, INotifyPropertyChanged
     }
 
     [Browsable(false)]
-    public int UserForeignKey { get; set; }
+    public Guid UserForeignKey { get; set; }
 
     [Required]
     [ForeignKey(nameof(UserForeignKey))]

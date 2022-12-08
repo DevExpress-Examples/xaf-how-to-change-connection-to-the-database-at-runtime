@@ -27,33 +27,32 @@
 	<ItemGroup>
 		<PackageReference Include="Castle.Core" Version="4.4.1" />
 		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.4" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
 		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
 		<PackageReference Include="Logify.Alert.Console" Version="1.0.55" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.3" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
 		<PackageReference Include="System.Reactive" Version="5.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.5" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
 
 		<PackageReference Include="System.CodeDom" Version="5.0.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="DevExpress.ExpressApp" Version="22.1.3" />
-		<PackageReference Include="DevExpress.ExpressApp.Blazor.All" Version="22.1.3" />
-		<PackageReference Include="DevExpress.ExpressApp.AspNetCore" Version="22.1.3" />
-		<PackageReference Include="DevExpress.ExpressApp.Security.AspNetCore" Version="22.1.3" />
-		<PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="22.1.3" />
-		<PackageReference Include="DevExpress.ExpressApp.EFCore" Version="22.1.3" />
-		<PackageReference Include="DevExpress.Persistent.Base" Version="22.1.3" />
-		<PackageReference Include="DevExpress.Persistent.BaseImpl.EFCore" Version="22.1.3" />
+		<PackageReference Include="DevExpress.ExpressApp" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.ExpressApp.Blazor.All" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.ExpressApp.AspNetCore" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.ExpressApp.Security.AspNetCore" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.ExpressApp.EFCore" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.Persistent.Base" Version="22.2.2-beta" />
+		<PackageReference Include="DevExpress.Persistent.BaseImpl.EFCore" Version="22.2.2-beta" />
 		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
 	</ItemGroup>
   <ItemGroup>
@@ -62,4 +61,8 @@
     </ProjectReference>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="22.2.2-beta" />
+  </ItemGroup>
 </Project>
