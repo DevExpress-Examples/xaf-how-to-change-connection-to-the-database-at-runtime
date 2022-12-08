@@ -40,55 +40,55 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Images.v22.1">
+    <Reference Include="DevExpress.Images.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.v22.1">
+    <Reference Include="DevExpress.ExpressApp.Security.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v22.1">
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v22.1">
+    <Reference Include="DevExpress.ExpressApp.Validation.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.Win.v22.1">
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v22.1">
+    <Reference Include="DevExpress.ExpressApp.Xpo.v22.2">
     </Reference>
-    <Reference Include="DevExpress.Pdf.v22.1.Core">
+    <Reference Include="DevExpress.Pdf.v22.2.Core">
     </Reference>
-    <Reference Include="DevExpress.Office.v22.1.Core">
+    <Reference Include="DevExpress.Office.v22.2.Core">
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.1.Core">
+    <Reference Include="DevExpress.RichEdit.v22.2.Core">
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.1.Export">
+    <Reference Include="DevExpress.RichEdit.v22.2.Export">
     </Reference>
-    <Reference Include="DevExpress.Printing.v22.1.Core">
+    <Reference Include="DevExpress.Printing.v22.2.Core">
     </Reference>
-    <Reference Include="DevExpress.Data.v22.1">
+    <Reference Include="DevExpress.Data.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.v22.1">
+    <Reference Include="DevExpress.ExpressApp.v22.2">
     </Reference>
-    <Reference Include="DevExpress.ExpressApp.Win.v22.1">
+    <Reference Include="DevExpress.ExpressApp.Win.v22.2">
     </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v22.1">
+    <Reference Include="DevExpress.Persistent.Base.v22.2">
     </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v22.1">
+    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v22.2">
     </Reference>
-    <Reference Include="DevExpress.Xpo.v22.1">
+    <Reference Include="DevExpress.Xpo.v22.2">
     </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.1">
+    <Reference Include="DevExpress.Data.Desktop.v22.2">
     </Reference>
-    <Reference Include="DevExpress.Utils.v22.1">
+    <Reference Include="DevExpress.Utils.v22.2">
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v22.1">
+    <Reference Include="DevExpress.XtraGrid.v22.2">
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v22.1">
+    <Reference Include="DevExpress.XtraEditors.v22.2">
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v22.1">
+    <Reference Include="DevExpress.XtraLayout.v22.2">
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v22.1">
+    <Reference Include="DevExpress.XtraNavBar.v22.2">
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v22.1">
+    <Reference Include="DevExpress.XtraBars.v22.2">
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v22.1">
+    <Reference Include="DevExpress.XtraPrinting.v22.2">
     </Reference>
     <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
