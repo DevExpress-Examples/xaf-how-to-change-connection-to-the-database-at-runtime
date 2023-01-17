@@ -36,7 +36,7 @@ namespace RuntimeDbChooser.Web {
         }
         protected override bool IsCompatibilityChecked {
             get {
-                return isCompatibilityChecked.GetOrAdd(ConnectionString, false);
+                return isCompatibilityChecked.ContainsKey(ConnectionString);
             }
 
             set {
