@@ -70,3 +70,6 @@ This example illustrates how to connect your application to a different databa
 * [ConnectionStringHelper\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
 * (EFCore [DbContext\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs))
 <!-- default file list end -->
+
+## See Also
+[How to Implement a Multi-Tenant Application for Blazor and WinForms](https://www.devexpress.com/go/XAF_MultiTenancy_Example.aspx)
