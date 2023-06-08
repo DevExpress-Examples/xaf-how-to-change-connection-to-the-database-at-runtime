@@ -25,9 +25,9 @@
     </Content>
   </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Castle.Core" Version="4.4.1" />
+		<PackageReference Include="Castle.Core" Version="5.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.4" />
-		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.8.6" />
+		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.0" />
 		<PackageReference Include="Logify.Alert.Console" Version="1.0.55" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.10" />
