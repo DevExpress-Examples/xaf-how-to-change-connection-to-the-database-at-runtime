@@ -69,7 +69,7 @@ Alternative solutions: [How to Implement a Multi-Tenant Application for Blazor a
 * [BlazorApplication.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
 * (XPO: [XpoDataStoreProviderAccessor.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/XpoDataStoreProviderAccessor.cs))
 * [ConnectionStringProvider\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
-* [ConnectionStringHelper\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs) (XPO: [ConnectionStringProvider.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringProvider.cs))
+* [ConnectionStringHelper\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs) (XPO: [ConnectionStringHelper.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Services/ConnectionStringHelper.cs))
 * (EFCore [DbContext\.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/DbContext.cs))
 <!-- default file list end -->
 
