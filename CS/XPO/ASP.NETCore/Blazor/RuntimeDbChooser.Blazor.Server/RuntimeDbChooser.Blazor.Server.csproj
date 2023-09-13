@@ -27,14 +27,14 @@
 	<ItemGroup>
 		<PackageReference Include="System.Reactive" Version="5.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-		<PackageReference Include="System.CodeDom" Version="5.0.0" />
+		<PackageReference Include="System.CodeDom" Version="6.0.0" />
 		<PackageReference Include="Logify.Alert.Console" Version="1.0.52" />
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
 		<PackageReference Include="RestSharp" Version="106.12.0" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
 		<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup>
