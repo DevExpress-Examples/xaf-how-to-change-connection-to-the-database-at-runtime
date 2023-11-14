@@ -25,14 +25,14 @@
     </Content>
   </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Castle.Core" Version="5.1.0" />
+		<PackageReference Include="Castle.Core" Version="5.1.1" />
 		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.4" />
-		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.0" />
+		<PackageReference Include="DevExtreme.AspNet.Data" Version="3.0.0" />
 		<PackageReference Include="Logify.Alert.Console" Version="1.0.55" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.10" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.4" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
 		<PackageReference Include="System.Reactive" Version="5.0.0" />
