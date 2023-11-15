@@ -26,7 +26,7 @@
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Reactive" Version="5.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.CodeDom" Version="6.0.0" />
 		<PackageReference Include="Logify.Alert.Console" Version="1.0.52" />
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
@@ -34,7 +34,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
 		<PackageReference Include="RestSharp" Version="106.12.0" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
 		<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
 	</ItemGroup>
 	<ItemGroup>
@@ -47,7 +47,7 @@
 		<PackageReference Include="DevExpress.ExpressApp.Xpo" Version="22.2.2-beta" />
 		<PackageReference Include="DevExpress.Persistent.Base" Version="22.2.2-beta" />
 		<PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="22.2.2-beta" />
-		<PackageReference Include="DevExtreme.AspNet.Data" Version="2.9.0" />
+		<PackageReference Include="DevExtreme.AspNet.Data" Version="3.0.0" />
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.NetStandard.csproj">
