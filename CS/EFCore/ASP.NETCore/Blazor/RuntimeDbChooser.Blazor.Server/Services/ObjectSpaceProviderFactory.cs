@@ -1,4 +1,5 @@
-﻿//using DevExpress.EntityFrameworkCore.Security;
+﻿using System;
+//using DevExpress.EntityFrameworkCore.Security;
 //using DevExpress.ExpressApp;
 //using DevExpress.ExpressApp.Core;
 //using DevExpress.ExpressApp.DC;
@@ -16,8 +17,10 @@
 //    readonly ILogonParameterProvider logonParameterProvider;
 //    readonly IConnectionStringHelper connectionStringHelper;
 
-//    public ObjectSpaceProviderFactory(ISecurityStrategyBase security, ITypesInfo typesInfo, ILogonParameterProvider logonParameterProvider, IConnectionStringHelper connectionStringHelper) {
+//    readonly IServiceProvider serviceProvider;
+//    public ObjectSpaceProviderFactory(IServiceProvider serviceProvider, ISecurityStrategyBase security, ITypesInfo typesInfo, ILogonParameterProvider logonParameterProvider, IConnectionStringHelper connectionStringHelper) {
 //        this.security = security;
+//        this.serviceProvider = serviceProvider;
 //        this.typesInfo = typesInfo;
 //        this.logonParameterProvider = logonParameterProvider;
 //        this.connectionStringHelper = connectionStringHelper;
@@ -31,7 +34,7 @@
 //            });
 
 //        yield return efCoreObjectSpaceProvider;
-//        yield return new NonPersistentObjectSpaceProvider(typesInfo, null);
+//        yield return new NonPersistentObjectSpaceProvider(serviceProvider, typesInfo, null);
 //    }
 
 //    string GetConnectionString() {

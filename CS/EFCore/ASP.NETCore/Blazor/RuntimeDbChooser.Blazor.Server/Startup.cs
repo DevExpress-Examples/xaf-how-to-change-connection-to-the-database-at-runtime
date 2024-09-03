@@ -54,6 +54,7 @@ namespace RuntimeDbChooser.Blazor.Server {
                         //The connection string is assigned dynamically in the DemoDbContext instance.
                         //string connectionString = //...
                         //options.UseSqlServer(connectionString);
+                        options.UseXafServiceProviderContainer(serviceProvider);
                         options.UseLazyLoadingProxies();
                         options.UseChangeTrackingProxies();
                     })

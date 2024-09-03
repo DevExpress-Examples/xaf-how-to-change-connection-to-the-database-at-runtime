@@ -42,54 +42,31 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.ExpressApp.Security.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Validation.Win.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Xpo.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.Pdf.v22.2.Core">
-    </Reference>
-    <Reference Include="DevExpress.Office.v22.2.Core">
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.2.Core">
-    </Reference>
-    <Reference Include="DevExpress.RichEdit.v22.2.Export">
-    </Reference>
-    <Reference Include="DevExpress.Printing.v22.2.Core">
-    </Reference>
-    <Reference Include="DevExpress.Data.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.ExpressApp.Win.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.Persistent.Base.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.Xpo.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.Data.Desktop.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.Utils.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.XtraGrid.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.XtraLayout.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v22.2">
-    </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v22.2">
-    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v24.2"></Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v24.2"></Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v24.2"></Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Win.v24.2"></Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v24.2"></Reference>
+    <Reference Include="DevExpress.Pdf.v24.2.Core"></Reference>
+    <Reference Include="DevExpress.Office.v24.2.Core"></Reference>
+    <Reference Include="DevExpress.RichEdit.v24.2.Core"></Reference>
+    <Reference Include="DevExpress.RichEdit.v24.2.Export"></Reference>
+    <Reference Include="DevExpress.Printing.v24.2.Core"></Reference>
+    <Reference Include="DevExpress.Data.v24.2"></Reference>
+    <Reference Include="DevExpress.Drawing.v24.2"></Reference>
+    <Reference Include="DevExpress.ExpressApp.v24.2"></Reference>
+    <Reference Include="DevExpress.ExpressApp.Win.v24.2"></Reference>
+    <Reference Include="DevExpress.Persistent.Base.v24.2"></Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.Xpo.v24.2"></Reference>
+    <Reference Include="DevExpress.Xpo.v24.2"></Reference>
+    <Reference Include="DevExpress.Data.Desktop.v24.2"></Reference>
+    <Reference Include="DevExpress.Utils.v24.2"></Reference>
+    <Reference Include="DevExpress.XtraGrid.v24.2"></Reference>
+    <Reference Include="DevExpress.XtraEditors.v24.2"></Reference>
+    <Reference Include="DevExpress.XtraLayout.v24.2"></Reference>
+    <Reference Include="DevExpress.XtraNavBar.v24.2"></Reference>
+    <Reference Include="DevExpress.XtraBars.v24.2"></Reference>
+    <Reference Include="DevExpress.XtraPrinting.v24.2"></Reference>
     <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -172,4 +149,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="24.2.1-alpha-24207">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>
