@@ -11,7 +11,8 @@
 
 This example illustrates how to connect your application to a different database after the application start. Use this approach in a multi-tenant application where you need to associate every user or company with their own database. You can choose the user and the database during the login procedure. In this scenario, all databases have the same structure, but their predefined data sets may vary.
 
-![](https://raw.githubusercontent.com/DevExpress-Examples/XAF_how-to-change-connection-to-the-database-at-runtime-e1344/20.2.5%2B/media/e1344Blazor.png)
+![image](https://github.com/user-attachments/assets/9f84d324-ac25-46be-897d-99482e7de62b)
+
 
 Alternative solutions: [How to Implement a Multi-Tenant Application for Blazor and WinForms](https://www.devexpress.com/go/XAF_MultiTenancy_Example.aspx)
   
