@@ -47,15 +47,15 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.*" />
     <PackageReference Include="Castle.Core" Version="5.1.1" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.*" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.*" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DevExpress.ExpressApp" Version="24.2.1-alpha-24207" />
