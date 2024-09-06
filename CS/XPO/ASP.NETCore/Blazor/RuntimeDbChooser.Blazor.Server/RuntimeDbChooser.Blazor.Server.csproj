@@ -47,7 +47,7 @@
 		<PackageReference Include="DevExpress.ExpressApp.Xpo" Version="22.2.2-beta" />
 		<PackageReference Include="DevExpress.Persistent.Base" Version="22.2.2-beta" />
 		<PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="22.2.2-beta" />
-		<PackageReference Include="DevExtreme.AspNet.Data" Version="3.0.0" />
+		<PackageReference Include="DevExtreme.AspNet.Data" Version="4.*" />
 	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.NetStandard.csproj">
