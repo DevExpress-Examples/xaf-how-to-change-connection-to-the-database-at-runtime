@@ -7,6 +7,8 @@ using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using RuntimeDbChooser.Services;
 
 namespace RuntimeDbChooser.Module.BusinessObjects;
@@ -51,12 +53,12 @@ public class DemoDbContext : DbContext {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
         //Configure the connection string based on logon parameter values.
-        if(!optionsBuilder.IsConfigured) {
-            string connectionString = connectionStringProvider.GetConnectionString();
-            optionsBuilder.UseSqlServer(connectionString);
-            optionsBuilder.UseChangeTrackingProxies();
-            optionsBuilder.UseLazyLoadingProxies();
-        }
+#pragma warning disable EF1001
+        string connectionString = connectionStringProvider.GetConnectionString();
+        var sqlServerExtension = optionsBuilder.Options.FindExtension<SqlServerOptionsExtension>()
+            .WithConnectionString(connectionString);
+        ((IDbContextOptionsBuilderInfrastructure)optionsBuilder).AddOrUpdateExtension(sqlServerExtension);
+#pragma warning restore EF1001
     }
 
     public DbSet<ApplicationUser> Users { get; set; }
