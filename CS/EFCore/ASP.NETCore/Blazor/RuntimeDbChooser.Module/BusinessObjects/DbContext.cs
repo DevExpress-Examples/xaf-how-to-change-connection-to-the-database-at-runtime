@@ -7,6 +7,8 @@ using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.Persistent.BaseImpl.EF.PermissionPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using RuntimeDbChooser.Services;
 
 namespace RuntimeDbChooser.Module.BusinessObjects;
@@ -48,6 +50,17 @@ public class DemoDbContext : DbContext {
             b.HasIndex(nameof(ISecurityUserLoginInfo.LoginProviderName), nameof(ISecurityUserLoginInfo.ProviderUserKey)).IsUnique();
         });
     }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        base.OnConfiguring(optionsBuilder);
+        //Configure the connection string based on logon parameter values.
+#pragma warning disable EF1001
+        string connectionString = connectionStringProvider.GetConnectionString();
+        var sqlServerExtension = optionsBuilder.Options.FindExtension<SqlServerOptionsExtension>()
+            .WithConnectionString(connectionString);
+        ((IDbContextOptionsBuilderInfrastructure)optionsBuilder).AddOrUpdateExtension(sqlServerExtension);
+#pragma warning restore EF1001
+    }
+
     public DbSet<ApplicationUser> Users { get; set; }
     public DbSet<ApplicationUserLoginInfo> UserLoginInfos { get; set; }
     public DbSet<ModelDifference> ModelDifferences { get; set; }

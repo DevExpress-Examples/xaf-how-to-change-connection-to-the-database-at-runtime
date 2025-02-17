@@ -51,13 +51,12 @@ namespace RuntimeDbChooser.Blazor.Server {
                 builder.ObjectSpaceProviders
                     .AddSecuredEFCore().WithDbContext<DemoDbContext>((serviceProvider, options) => {
                         //Configure the connection string based on logon parameter values.
-                        var connectionStringProvider = serviceProvider.GetRequiredService<IConnectionStringProvider>();
-                        string connectionString = connectionStringProvider.GetConnectionString();
-                        options.UseSqlServer(connectionString);
+                        //The connection string is assigned dynamically in the DemoDbContext instance.
+                        options.UseSqlServer(";");
                         options.UseXafServiceProviderContainer(serviceProvider);
                         options.UseLazyLoadingProxies();
                         options.UseChangeTrackingProxies();
-                    }, ServiceLifetime.Transient)
+                    })
                     .AddNonPersistent();
                 builder.Security
                     .UseIntegratedMode(options => {
