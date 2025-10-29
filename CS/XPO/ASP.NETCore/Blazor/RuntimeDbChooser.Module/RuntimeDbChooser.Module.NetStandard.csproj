@@ -49,23 +49,23 @@
     <None Include="BusinessObjects\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.ExpressApp.ConditionalAppearance" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.ExpressApp.Validation" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.ExpressApp.ReportsV2" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.Persistent.Base" Version="24.2.1-alpha-24207" />
-    <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="24.2.1-alpha-24207" />
+    <PackageReference Include="DevExpress.ExpressApp" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp.ConditionalAppearance" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp.ReportsV2" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.Persistent.Base" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="25.2.1-alpha-25302" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="24.2.1-alpha-24207" />
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="25.2.1-alpha-25302" />
   </ItemGroup>
 </Project>
