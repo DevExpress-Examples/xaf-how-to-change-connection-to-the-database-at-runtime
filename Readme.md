@@ -57,15 +57,6 @@ Alternative solutions: [How to Implement a Multi-Tenant Application for Blazor a
 * [Updater.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs) (EFCore: [Updater.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/DatabaseUpdate/Updater.cs))
 * [CustomLogonParameters.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs) (EFCore: [CustomLogonParameters.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Module/BusinessObjects/CustomLogonParameters.cs))
 
-**WinForms**
-* [Program.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Win/Program.cs)
-* [WinApplication.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Win/WinApplication.cs)
-* [CustomLogonController.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Win/Controllers/CustomLogonController.cs)
-
-**ASP.NET WebForms**
-* [WebApplication.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Web/WebApplication.cs)
-* [CustomLogonController.cs](./CS/XPO/NET_Framework/RuntimeDbChooser.Web/Controllers/CustomLogonController.cs)
-
 **Blazor Server**
 * [Startup.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs) (XPO: [Startup.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/Startup.cs))
 * [BlazorApplication.cs](./CS/EFCore/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs) (XPO: [BlazorApplication.cs](./CS/XPO/ASP.NETCore/Blazor/RuntimeDbChooser.Blazor.Server/BlazorApplication.cs))
@@ -84,3 +75,4 @@ Alternative solutions: [How to Implement a Multi-Tenant Application for Blazor a
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
