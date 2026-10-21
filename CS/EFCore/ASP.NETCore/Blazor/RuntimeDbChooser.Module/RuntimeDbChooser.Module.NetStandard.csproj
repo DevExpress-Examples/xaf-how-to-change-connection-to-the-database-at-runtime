@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <EnableDefaultItems>false</EnableDefaultItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Configurations>Debug;Release;EasyTest</Configurations>
@@ -47,33 +47,33 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.*" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.*" />
     <PackageReference Include="Castle.Core" Version="5.2.1" />
-    <PackageReference Include="System.Drawing.Common" Version="8.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.*" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.10.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.10.0" />
+    <PackageReference Include="System.Drawing.Common" Version="10.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="10.*" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="5.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="5.6.0" />
   
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.*">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.*">
       <PrivateAssets>none</PrivateAssets>
       <IncludeAssets>all</IncludeAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.ExpressApp.ConditionalAppearance" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.ExpressApp.Validation" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.ExpressApp.ReportsV2" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.ExpressApp.EFCore" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.Persistent.Base" Version="25.2.1-alpha-25302" />
-    <PackageReference Include="DevExpress.Persistent.BaseImpl.EFCore" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.ConditionalAppearance" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.ReportsV2" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.EFCore" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Persistent.Base" Version="26.1.5" />
+    <PackageReference Include="DevExpress.Persistent.BaseImpl.EFCore" Version="26.1.5" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="25.2.1-alpha-25302" />
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="26.1.5" />
   </ItemGroup>
 </Project>

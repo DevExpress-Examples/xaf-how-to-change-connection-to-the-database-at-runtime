@@ -106,7 +106,7 @@ namespace RuntimeDbChooser.Blazor.Server {
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseAntiforgery();
             app.UseXaf();
             app.UseDevExpressBlazorReporting();
             app.UseEndpoints(endpoints => {
