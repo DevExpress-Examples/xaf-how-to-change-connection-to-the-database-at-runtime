@@ -55,6 +55,7 @@
     <PackageReference Include="DevExpress.ExpressApp.EFCore" Version="26.1.5" />
     <PackageReference Include="DevExpress.Persistent.Base" Version="26.1.5" />
     <PackageReference Include="DevExpress.Persistent.BaseImpl.EFCore" Version="26.1.5" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.13" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RuntimeDbChooser.Module\RuntimeDbChooser.Module.NetStandard.csproj">
