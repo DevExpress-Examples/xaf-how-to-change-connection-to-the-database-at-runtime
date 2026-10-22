@@ -45,7 +45,7 @@
     <None Include="BusinessObjects\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.*" />
     <PackageReference Include="Castle.Core" Version="5.2.1" />
