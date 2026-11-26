@@ -37,15 +37,15 @@
     <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.13" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp" Version="26.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Blazor.All" Version="26.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.AspNetCore" Version="26.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="26.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Security.AspNetCore" Version="26.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="26.1.5" />
-    <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="26.1.5" />
-    <PackageReference Include="DevExpress.Persistent.Base" Version="26.1.5" />
-    <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.ExpressApp.Blazor.All" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.ExpressApp.AspNetCore" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.ExpressApp.Security.Xpo" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.ExpressApp.Security.AspNetCore" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.ExpressApp.Validation.Blazor" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.ExpressApp.Xpo" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.Persistent.Base" Version="26.2.2-beta" />
+    <PackageReference Include="DevExpress.Persistent.BaseImpl.Xpo" Version="26.2.2-beta" />
   
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
   </ItemGroup>
@@ -55,6 +55,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="26.1.5" />
+    <PackageReference Include="DevExpress.ExpressApp.CodeAnalysis" Version="26.2.2-beta" />
   </ItemGroup>
 </Project>

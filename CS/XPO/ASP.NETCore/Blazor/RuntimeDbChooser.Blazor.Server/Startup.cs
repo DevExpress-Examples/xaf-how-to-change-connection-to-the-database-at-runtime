@@ -17,6 +17,7 @@ using RuntimeDbChooser.Module;
 using RuntimeDbChooser.Module.Blazor;
 using RuntimeDbChooser.Module.BusinessObjects;
 using RuntimeDbChooser.Services;
+using System.Security.Claims;
 
 namespace RuntimeDbChooser.Blazor.Server {
     public class Startup {
@@ -64,6 +65,13 @@ namespace RuntimeDbChooser.Blazor.Server {
                     .AddPasswordAuthentication(options => {
                         options.IsSupportChangePassword = true;
                         options.LogonParametersType = typeof(CustomLogonParametersForStandardAuthentication);
+                        options.Events.OnCustomizeLoginToken = context => {
+                            string? dbName = (context.LogonParameters as IDatabaseNameParameter)?.DatabaseName?.Name;
+                            if (!string.IsNullOrEmpty(dbName))
+                            {
+                                context.Claims.Add(new Claim(ConnectionStringProvider.DatabaseNameClaimType, dbName));
+                            }
+                        };
                     });
                 builder.AddBuildStep(application => {
                     application.ApplicationName = "RuntimeDbChooser";
